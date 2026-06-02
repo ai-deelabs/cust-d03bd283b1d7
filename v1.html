@@ -426,7 +426,23 @@
 
   /* ---------- Responsive ---------- */
   @media (max-width: 920px) {
-    .nav-links { display: none; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 78px; left: 0; right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      margin-left: 0;
+      padding: 10px 32px 22px;
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 20px 40px rgba(28,24,20,0.12);
+    }
+    header.nav-open .nav-links { display: flex; }
+    .nav-links a { font-size: 1rem; padding: 14px 0; color: var(--ink); }
+    .nav-links a::after { display: none; }
+    .nav-cta { margin-top: 12px; justify-content: center; padding: 13px 22px !important; }
     .menu-btn { display: inline-flex; }
     .nav-actions { margin-left: 0; }
     .hero-grid, .statement .wrap, .cta-grid { grid-template-columns: 1fr; }
@@ -436,6 +452,7 @@
   }
   @media (max-width: 600px) {
     .wrap { padding: 0 22px; }
+    .nav-links { padding: 10px 22px 22px; }
     section { padding: 72px 0; }
     .services-grid, .steps, .stats-grid { grid-template-columns: 1fr; }
     .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 130px; }
@@ -789,9 +806,20 @@
   }, { threshold: 0.14 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // Mobile menu -> jump to contact (lightweight)
-  document.querySelector('.menu-btn').addEventListener('click', () => {
-    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+  // Mobile menu toggle
+  const header = document.querySelector('header');
+  const menuBtn = document.querySelector('.menu-btn');
+  menuBtn.setAttribute('aria-expanded', 'false');
+  menuBtn.addEventListener('click', () => {
+    const open = header.classList.toggle('nav-open');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  // Close the menu after tapping any nav link
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      header.classList.remove('nav-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
   });
 </script>
 </body>
