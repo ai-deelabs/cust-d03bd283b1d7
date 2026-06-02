@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Bless Studio Production — Event Booth Rental</title>
+<title>Bless Studio Production — ให้เช่าบูธอีเวนต์</title>
+<meta name="description" content="Bless Studio Production ออกแบบ ผลิต และดูแลบูธอีเวนต์ที่น่าจดจำ สำหรับงานเปิดตัว งานแสดงสินค้า งานแต่งงาน และกิจกรรมแบรนด์" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Noto+Serif+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   :root {
     --bone: #f3eee4;
@@ -31,6 +32,8 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 
   h1, h2, h3, h4 {
@@ -39,6 +42,24 @@
     line-height: 1.04;
     letter-spacing: -0.01em;
   }
+
+  /* ---------- Thai typography ---------- */
+  html[lang="th"] body {
+    font-family: 'Noto Sans Thai', 'Sukhumvit Set', 'Inter', system-ui, sans-serif;
+    line-height: 1.7;
+  }
+  html[lang="th"] h1,
+  html[lang="th"] h2,
+  html[lang="th"] h3,
+  html[lang="th"] h4,
+  html[lang="th"] .statement .big,
+  html[lang="th"] .quote blockquote,
+  html[lang="th"] .gcap,
+  html[lang="th"] .marquee span {
+    font-family: 'Noto Serif Thai', 'Sukhumvit Set', Georgia, serif;
+  }
+  html[lang="th"] h1,
+  html[lang="th"] h2 { line-height: 1.18; }
 
   a { color: inherit; text-decoration: none; }
   img { display: block; width: 100%; height: 100%; object-fit: cover; }
@@ -99,7 +120,7 @@
     text-transform: uppercase;
     color: var(--ink-soft);
   }
-  .nav-links { display: flex; gap: 38px; align-items: center; }
+  .nav-links { display: flex; gap: 38px; align-items: center; margin-left: auto; }
   .nav-links a {
     font-size: 0.82rem;
     letter-spacing: 0.04em;
@@ -124,6 +145,27 @@
   .nav-cta::after { display: none; }
   .nav-cta:hover { background: var(--ink); color: var(--paper) !important; }
   .nav-cta i { width: 15px; height: 15px; }
+
+  /* ---------- Nav actions / language switch ---------- */
+  .nav-actions { display: flex; align-items: center; gap: 14px; margin-left: 24px; }
+  .lang-switch {
+    display: inline-flex; align-items: center; gap: 2px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 3px;
+    background: rgba(255,255,255,0.35);
+  }
+  .lang-btn {
+    background: none; border: none; cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    padding: 5px 11px; border-radius: 100px; line-height: 1;
+    transition: background .25s, color .25s;
+  }
+  .lang-btn:hover { color: var(--ink); }
+  .lang-btn.active { background: var(--ink); color: var(--paper); }
+
   .menu-btn { display: none; background: none; border: none; cursor: pointer; color: var(--ink); }
 
   /* ---------- Hero ---------- */
@@ -140,6 +182,7 @@
   }
   .hero h1 em { font-style: italic; color: var(--clay); }
   .hero h1 .thin { font-weight: 300; }
+  html[lang="th"] .hero h1 { font-size: clamp(2.4rem, 7vw, 5rem); }
   .hero-lead {
     margin-top: 30px;
     max-width: 430px;
@@ -366,6 +409,7 @@
   .foot-logo .mark em { font-style: italic; color: #e8a48f; }
   .foot-logo p { margin-top: 16px; font-size: 0.9rem; max-width: 280px; }
   .foot-col h4 { font-family: 'Inter', sans-serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--paper); margin-bottom: 18px; font-weight: 600; }
+  html[lang="th"] .foot-col h4 { font-family: 'Noto Sans Thai', 'Inter', sans-serif; }
   .foot-col a, .foot-col p { display: block; font-size: 0.9rem; margin-bottom: 11px; transition: color .25s; }
   .foot-col a:hover { color: #e8a48f; }
   .foot-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 28px; font-size: 0.8rem; flex-wrap: wrap; gap: 14px; }
@@ -384,6 +428,7 @@
   @media (max-width: 920px) {
     .nav-links { display: none; }
     .menu-btn { display: inline-flex; }
+    .nav-actions { margin-left: 0; }
     .hero-grid, .statement .wrap, .cta-grid { grid-template-columns: 1fr; }
     .hero-visual { height: 420px; margin-top: 20px; }
     .services-grid, .steps, .stats-grid { grid-template-columns: 1fr 1fr; }
@@ -410,13 +455,19 @@
       <span class="sub">Production</span>
     </a>
     <nav class="nav-links">
-      <a href="#work">Work</a>
-      <a href="#services">Rentals</a>
-      <a href="#process">Process</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#contact" class="nav-cta">Request a quote <i data-lucide="arrow-up-right"></i></a>
+      <a href="#work" data-lang-th="ผลงาน" data-lang-en="Work">ผลงาน</a>
+      <a href="#services" data-lang-th="บริการเช่า" data-lang-en="Rentals">บริการเช่า</a>
+      <a href="#process" data-lang-th="ขั้นตอน" data-lang-en="Process">ขั้นตอน</a>
+      <a href="#gallery" data-lang-th="แกลเลอรี" data-lang-en="Gallery">แกลเลอรี</a>
+      <a href="#contact" class="nav-cta" data-lang-th='ขอใบเสนอราคา <i data-lucide="arrow-up-right"></i>' data-lang-en='Request a quote <i data-lucide="arrow-up-right"></i>'>ขอใบเสนอราคา <i data-lucide="arrow-up-right"></i></a>
     </nav>
-    <button class="menu-btn" aria-label="Menu"><i data-lucide="menu"></i></button>
+    <div class="nav-actions">
+      <div class="lang-switch" role="group" aria-label="Language switcher">
+        <button class="lang-btn" data-lang="th" type="button">TH</button>
+        <button class="lang-btn" data-lang="en" type="button">EN</button>
+      </div>
+      <button class="menu-btn" aria-label="Menu"><i data-lucide="menu"></i></button>
+    </div>
   </div>
 </header>
 
@@ -424,27 +475,29 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <span class="eyebrow">Event Booth Rental Studio</span>
-      <h1>
-        Booths<br />
-        built to be <em>remembered</em><br />
-        <span class="thin">— not just rented.</span>
+      <span class="eyebrow" data-lang-th="สตูดิโอให้เช่าบูธอีเวนต์" data-lang-en="Event Booth Rental Studio">สตูดิโอให้เช่าบูธอีเวนต์</span>
+      <h1
+        data-lang-th='บูธ<br /> ที่สร้างมาเพื่อ<em>การจดจำ</em><br /> <span class="thin">— ไม่ใช่แค่การเช่า</span>'
+        data-lang-en='Booths<br /> built to be <em>remembered</em><br /> <span class="thin">— not just rented.</span>'>
+        บูธ<br />
+        ที่สร้างมาเพื่อ<em>การจดจำ</em><br />
+        <span class="thin">— ไม่ใช่แค่การเช่า</span>
       </h1>
-      <p class="hero-lead">
-        We design, build, and run statement booths for launches, expos,
-        weddings and brand activations. You bring the occasion; we bring
-        the structure, the light, and the feeling.
+      <p class="hero-lead"
+        data-lang-th="เราออกแบบ ผลิต และดูแลบูธที่โดดเด่นสำหรับงานเปิดตัว งานแสดงสินค้า งานแต่งงาน และกิจกรรมแบรนด์ คุณเตรียมโอกาสพิเศษมา ส่วนเราเตรียมโครงสร้าง แสงไฟ และความรู้สึกให้"
+        data-lang-en="We design, build, and run statement booths for launches, expos, weddings and brand activations. You bring the occasion; we bring the structure, the light, and the feeling.">
+        เราออกแบบ ผลิต และดูแลบูธที่โดดเด่นสำหรับงานเปิดตัว งานแสดงสินค้า งานแต่งงาน และกิจกรรมแบรนด์ คุณเตรียมโอกาสพิเศษมา ส่วนเราเตรียมโครงสร้าง แสงไฟ และความรู้สึกให้
       </p>
       <div class="hero-actions">
-        <a href="#contact" class="btn-primary">Plan your booth <i data-lucide="arrow-right"></i></a>
-        <a href="#work" class="btn-ghost">See recent builds <i data-lucide="arrow-down"></i></a>
+        <a href="#contact" class="btn-primary" data-lang-th='วางแผนบูธของคุณ <i data-lucide="arrow-right"></i>' data-lang-en='Plan your booth <i data-lucide="arrow-right"></i>'>วางแผนบูธของคุณ <i data-lucide="arrow-right"></i></a>
+        <a href="#work" class="btn-ghost" data-lang-th='ดูผลงานล่าสุด <i data-lucide="arrow-down"></i>' data-lang-en='See recent builds <i data-lucide="arrow-down"></i>'>ดูผลงานล่าสุด <i data-lucide="arrow-down"></i></a>
       </div>
     </div>
 
     <div class="hero-visual">
       <div class="hv-badge">
         <span class="n">12<span style="font-size:1rem">+</span></span>
-        <span class="t">Years on site</span>
+        <span class="t" data-lang-th="ปีในงานจริง" data-lang-en="Years on site">ปีในงานจริง</span>
       </div>
       <div class="frame hv-main">
         <img src="https://images.unsplash.com/photo-1558620013-a08999547a36?w=900&h=1100&fit=crop" alt="Event stage with dramatic lighting" />
@@ -457,10 +510,10 @@
 
   <div class="strip">
     <div class="marquee" id="marquee">
-      <span>Brand Activations</span><span>Wedding Lounges</span><span>Expo Stands</span>
-      <span>Photo Booths</span><span>Product Launches</span><span>Pop-up Bars</span>
-      <span>Brand Activations</span><span>Wedding Lounges</span><span>Expo Stands</span>
-      <span>Photo Booths</span><span>Product Launches</span><span>Pop-up Bars</span>
+      <span data-lang-th="กิจกรรมแบรนด์" data-lang-en="Brand Activations">กิจกรรมแบรนด์</span><span data-lang-th="เลาจน์งานแต่ง" data-lang-en="Wedding Lounges">เลาจน์งานแต่ง</span><span data-lang-th="บูธงานแสดงสินค้า" data-lang-en="Expo Stands">บูธงานแสดงสินค้า</span>
+      <span data-lang-th="โฟโต้บูธ" data-lang-en="Photo Booths">โฟโต้บูธ</span><span data-lang-th="งานเปิดตัวสินค้า" data-lang-en="Product Launches">งานเปิดตัวสินค้า</span><span data-lang-th="ป๊อปอัปบาร์" data-lang-en="Pop-up Bars">ป๊อปอัปบาร์</span>
+      <span data-lang-th="กิจกรรมแบรนด์" data-lang-en="Brand Activations">กิจกรรมแบรนด์</span><span data-lang-th="เลาจน์งานแต่ง" data-lang-en="Wedding Lounges">เลาจน์งานแต่ง</span><span data-lang-th="บูธงานแสดงสินค้า" data-lang-en="Expo Stands">บูธงานแสดงสินค้า</span>
+      <span data-lang-th="โฟโต้บูธ" data-lang-en="Photo Booths">โฟโต้บูธ</span><span data-lang-th="งานเปิดตัวสินค้า" data-lang-en="Product Launches">งานเปิดตัวสินค้า</span><span data-lang-th="ป๊อปอัปบาร์" data-lang-en="Pop-up Bars">ป๊อปอัปบาร์</span>
     </div>
   </div>
 </section>
@@ -468,12 +521,11 @@
 <!-- STATEMENT -->
 <section class="statement" id="work">
   <div class="wrap">
-    <div class="label">(Our craft)</div>
-    <p class="big reveal">
-      A booth is the one place where a crowd <em>stops moving</em>. We treat
-      that pause as the brief — engineering every <strong>frame, surface and
-      sightline</strong> so the moment your guests step inside feels deliberate,
-      generous, and entirely yours.
+    <div class="label" data-lang-th="(งานฝีมือของเรา)" data-lang-en="(Our craft)">(งานฝีมือของเรา)</div>
+    <p class="big reveal"
+      data-lang-th='บูธคือพื้นที่เดียวที่ผู้คน<em>หยุดเดิน</em> เรามองช่วงเวลาที่หยุดนั้นเป็นโจทย์ — ออกแบบทุก<strong>โครงสร้าง พื้นผิว และมุมมอง</strong> เพื่อให้วินาทีที่แขกของคุณก้าวเข้ามารู้สึกถึงความตั้งใจ ความใส่ใจ และเป็นของคุณอย่างแท้จริง'
+      data-lang-en='A booth is the one place where a crowd <em>stops moving</em>. We treat that pause as the brief — engineering every <strong>frame, surface and sightline</strong> so the moment your guests step inside feels deliberate, generous, and entirely yours.'>
+      บูธคือพื้นที่เดียวที่ผู้คน<em>หยุดเดิน</em> เรามองช่วงเวลาที่หยุดนั้นเป็นโจทย์ — ออกแบบทุก<strong>โครงสร้าง พื้นผิว และมุมมอง</strong> เพื่อให้วินาทีที่แขกของคุณก้าวเข้ามารู้สึกถึงความตั้งใจ ความใส่ใจ และเป็นของคุณอย่างแท้จริง
     </p>
   </div>
 </section>
@@ -482,45 +534,45 @@
 <section id="services">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">What we rent</span>
-      <h2>Rental systems for every <em>kind of gathering</em></h2>
+      <span class="eyebrow" data-lang-th="สิ่งที่เราให้เช่า" data-lang-en="What we rent">สิ่งที่เราให้เช่า</span>
+      <h2 data-lang-th='ระบบให้เช่าสำหรับ<em>ทุกการรวมตัว</em>' data-lang-en='Rental systems for every <em>kind of gathering</em>'>ระบบให้เช่าสำหรับ<em>ทุกการรวมตัว</em></h2>
     </div>
     <div class="services-grid reveal">
       <div class="svc">
         <span class="idx">01</span>
         <div class="ico"><i data-lucide="store"></i></div>
-        <h3>Exhibition Booths</h3>
-        <p>Modular stands for trade shows and expos — built for footfall, fast install, and a brand that reads from across the hall.</p>
+        <h3 data-lang-th="บูธจัดแสดง" data-lang-en="Exhibition Booths">บูธจัดแสดง</h3>
+        <p data-lang-th="บูธแบบโมดูลาร์สำหรับงานแสดงสินค้าและงานเอ็กซ์โป — ออกแบบมาเพื่อรองรับผู้คน ติดตั้งรวดเร็ว และทำให้แบรนด์โดดเด่นเห็นได้จากอีกฝั่งของฮอลล์" data-lang-en="Modular stands for trade shows and expos — built for footfall, fast install, and a brand that reads from across the hall.">บูธแบบโมดูลาร์สำหรับงานแสดงสินค้าและงานเอ็กซ์โป — ออกแบบมาเพื่อรองรับผู้คน ติดตั้งรวดเร็ว และทำให้แบรนด์โดดเด่นเห็นได้จากอีกฝั่งของฮอลล์</p>
       </div>
       <div class="svc">
         <span class="idx">02</span>
         <div class="ico"><i data-lucide="camera"></i></div>
-        <h3>Photo & 360 Booths</h3>
-        <p>Open-air and enclosed photo experiences with custom backdrops, instant prints, and a shareable highlight reel.</p>
+        <h3 data-lang-th="โฟโต้บูธ & บูธ 360 องศา" data-lang-en="Photo &amp; 360 Booths">โฟโต้บูธ &amp; บูธ 360 องศา</h3>
+        <p data-lang-th="ประสบการณ์ถ่ายภาพทั้งแบบเปิดโล่งและแบบปิดมิดชิด พร้อมฉากหลังตามสั่ง พิมพ์ภาพได้ทันที และคลิปไฮไลต์ที่แชร์ได้เลย" data-lang-en="Open-air and enclosed photo experiences with custom backdrops, instant prints, and a shareable highlight reel.">ประสบการณ์ถ่ายภาพทั้งแบบเปิดโล่งและแบบปิดมิดชิด พร้อมฉากหลังตามสั่ง พิมพ์ภาพได้ทันที และคลิปไฮไลต์ที่แชร์ได้เลย</p>
       </div>
       <div class="svc">
         <span class="idx">03</span>
         <div class="ico"><i data-lucide="sparkles"></i></div>
-        <h3>Brand Activations</h3>
-        <p>Immersive pop-ups, sampling bars and interactive corners designed to turn passers-by into a queue worth talking about.</p>
+        <h3 data-lang-th="กิจกรรมแบรนด์" data-lang-en="Brand Activations">กิจกรรมแบรนด์</h3>
+        <p data-lang-th="ป๊อปอัปสุดอิมเมอร์ซีฟ บาร์แจกสินค้าตัวอย่าง และมุมอินเทอร์แอกทีฟ ออกแบบมาเพื่อเปลี่ยนผู้คนที่เดินผ่านให้กลายเป็นคิวที่ใครๆ ก็พูดถึง" data-lang-en="Immersive pop-ups, sampling bars and interactive corners designed to turn passers-by into a queue worth talking about.">ป๊อปอัปสุดอิมเมอร์ซีฟ บาร์แจกสินค้าตัวอย่าง และมุมอินเทอร์แอกทีฟ ออกแบบมาเพื่อเปลี่ยนผู้คนที่เดินผ่านให้กลายเป็นคิวที่ใครๆ ก็พูดถึง</p>
       </div>
       <div class="svc">
         <span class="idx">04</span>
         <div class="ico"><i data-lucide="heart"></i></div>
-        <h3>Wedding Lounges</h3>
-        <p>Soft, intimate settings — seating vignettes, floral frames and warm lighting that hold a celebration together.</p>
+        <h3 data-lang-th="เลาจน์งานแต่งงาน" data-lang-en="Wedding Lounges">เลาจน์งานแต่งงาน</h3>
+        <p data-lang-th="บรรยากาศอบอุ่นและเป็นกันเอง — มุมที่นั่งสวยงาม ซุ้มดอกไม้ และแสงไฟนวลตาที่ร้อยเรียงงานเฉลิมฉลองให้เป็นหนึ่งเดียว" data-lang-en="Soft, intimate settings — seating vignettes, floral frames and warm lighting that hold a celebration together.">บรรยากาศอบอุ่นและเป็นกันเอง — มุมที่นั่งสวยงาม ซุ้มดอกไม้ และแสงไฟนวลตาที่ร้อยเรียงงานเฉลิมฉลองให้เป็นหนึ่งเดียว</p>
       </div>
       <div class="svc">
         <span class="idx">05</span>
         <div class="ico"><i data-lucide="lightbulb"></i></div>
-        <h3>Lighting & Staging</h3>
-        <p>The layer most people feel but never name. We tune colour, contrast and shadow to flatter both faces and product.</p>
+        <h3 data-lang-th="แสงไฟ & การจัดเวที" data-lang-en="Lighting &amp; Staging">แสงไฟ &amp; การจัดเวที</h3>
+        <p data-lang-th="เลเยอร์ที่ใครๆ ก็สัมผัสได้แต่ไม่เคยเอ่ยถึง เราปรับสี คอนทราสต์ และเงา เพื่อขับให้ทั้งใบหน้าและสินค้าดูดีที่สุด" data-lang-en="The layer most people feel but never name. We tune colour, contrast and shadow to flatter both faces and product.">เลเยอร์ที่ใครๆ ก็สัมผัสได้แต่ไม่เคยเอ่ยถึง เราปรับสี คอนทราสต์ และเงา เพื่อขับให้ทั้งใบหน้าและสินค้าดูดีที่สุด</p>
       </div>
       <div class="svc">
         <span class="idx">06</span>
         <div class="ico"><i data-lucide="package-check"></i></div>
-        <h3>Full Production</h3>
-        <p>Delivery, build, on-site crew and strike — one team owning the booth from blank floor to clean exit.</p>
+        <h3 data-lang-th="งานโปรดักชันครบวงจร" data-lang-en="Full Production">งานโปรดักชันครบวงจร</h3>
+        <p data-lang-th="ขนส่ง ติดตั้ง ทีมงานประจำหน้างาน และรื้อถอน — ทีมเดียวดูแลบูธตั้งแต่พื้นว่างเปล่าจนเก็บงานเรียบร้อย" data-lang-en="Delivery, build, on-site crew and strike — one team owning the booth from blank floor to clean exit.">ขนส่ง ติดตั้ง ทีมงานประจำหน้างาน และรื้อถอน — ทีมเดียวดูแลบูธตั้งแต่พื้นว่างเปล่าจนเก็บงานเรียบร้อย</p>
       </div>
     </div>
   </div>
@@ -530,14 +582,14 @@
 <section class="process" id="process">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">How it works</span>
-      <h2>Four steps from <em>brief to breakdown</em></h2>
+      <span class="eyebrow" data-lang-th="ขั้นตอนการทำงาน" data-lang-en="How it works">ขั้นตอนการทำงาน</span>
+      <h2 data-lang-th='สี่ขั้นตอนตั้งแต่<em>รับโจทย์จนรื้อถอน</em>' data-lang-en='Four steps from <em>brief to breakdown</em>'>สี่ขั้นตอนตั้งแต่<em>รับโจทย์จนรื้อถอน</em></h2>
     </div>
     <div class="steps">
-      <div class="step reveal"><div class="n">01</div><h3>Brief & Concept</h3><p>We map your goals, audience and venue, then sketch a booth concept with a fixed, transparent quote.</p></div>
-      <div class="step reveal"><div class="n">02</div><h3>Design & Build</h3><p>Renders, materials and finishes are locked. We fabricate in-studio so nothing is a surprise on site.</p></div>
-      <div class="step reveal"><div class="n">03</div><h3>Install & Run</h3><p>Our crew delivers, builds and staffs the booth — testing every light and screen before doors open.</p></div>
-      <div class="step reveal"><div class="n">04</div><h3>Strike & Wrap</h3><p>When it ends, we strike cleanly and send you the gallery, the metrics, and the highlights.</p></div>
+      <div class="step reveal"><div class="n">01</div><h3 data-lang-th="รับโจทย์ & แนวคิด" data-lang-en="Brief &amp; Concept">รับโจทย์ &amp; แนวคิด</h3><p data-lang-th="เราวิเคราะห์เป้าหมาย กลุ่มผู้ชม และสถานที่ของคุณ แล้วร่างแนวคิดบูธพร้อมใบเสนอราคาที่ชัดเจนและโปร่งใส" data-lang-en="We map your goals, audience and venue, then sketch a booth concept with a fixed, transparent quote.">เราวิเคราะห์เป้าหมาย กลุ่มผู้ชม และสถานที่ของคุณ แล้วร่างแนวคิดบูธพร้อมใบเสนอราคาที่ชัดเจนและโปร่งใส</p></div>
+      <div class="step reveal"><div class="n">02</div><h3 data-lang-th="ออกแบบ & ผลิต" data-lang-en="Design &amp; Build">ออกแบบ &amp; ผลิต</h3><p data-lang-th="ภาพเรนเดอร์ วัสดุ และการเก็บงานถูกกำหนดอย่างชัดเจน เราผลิตในสตูดิโอของเราเอง เพื่อไม่ให้มีเรื่องเซอร์ไพรส์ที่หน้างาน" data-lang-en="Renders, materials and finishes are locked. We fabricate in-studio so nothing is a surprise on site.">ภาพเรนเดอร์ วัสดุ และการเก็บงานถูกกำหนดอย่างชัดเจน เราผลิตในสตูดิโอของเราเอง เพื่อไม่ให้มีเรื่องเซอร์ไพรส์ที่หน้างาน</p></div>
+      <div class="step reveal"><div class="n">03</div><h3 data-lang-th="ติดตั้ง & ดูแลงาน" data-lang-en="Install &amp; Run">ติดตั้ง &amp; ดูแลงาน</h3><p data-lang-th="ทีมงานของเราขนส่ง ติดตั้ง และประจำการที่บูธ — ทดสอบทุกดวงไฟและทุกหน้าจอก่อนเปิดงาน" data-lang-en="Our crew delivers, builds and staffs the booth — testing every light and screen before doors open.">ทีมงานของเราขนส่ง ติดตั้ง และประจำการที่บูธ — ทดสอบทุกดวงไฟและทุกหน้าจอก่อนเปิดงาน</p></div>
+      <div class="step reveal"><div class="n">04</div><h3 data-lang-th="รื้อถอน & สรุปงาน" data-lang-en="Strike &amp; Wrap">รื้อถอน &amp; สรุปงาน</h3><p data-lang-th="เมื่อจบงาน เรารื้อถอนอย่างเรียบร้อย และส่งมอบแกลเลอรีภาพ ตัวเลขผลลัพธ์ และไฮไลต์ให้คุณ" data-lang-en="When it ends, we strike cleanly and send you the gallery, the metrics, and the highlights.">เมื่อจบงาน เรารื้อถอนอย่างเรียบร้อย และส่งมอบแกลเลอรีภาพ ตัวเลขผลลัพธ์ และไฮไลต์ให้คุณ</p></div>
     </div>
   </div>
 </section>
@@ -546,33 +598,33 @@
 <section id="gallery">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Selected work</span>
-      <h2>A few rooms we've <em>made memorable</em></h2>
+      <span class="eyebrow" data-lang-th="ผลงานคัดสรร" data-lang-en="Selected work">ผลงานคัดสรร</span>
+      <h2 data-lang-th="ไม่กี่พื้นที่ที่เรา<em>ทำให้น่าจดจำ</em>" data-lang-en="A few rooms we've <em>made memorable</em>">ไม่กี่พื้นที่ที่เรา<em>ทำให้น่าจดจำ</em></h2>
     </div>
     <div class="gallery-grid reveal">
       <div class="frame g1">
         <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=900&h=900&fit=crop" alt="Corporate conference audience" />
-        <span class="gcap">Annual Summit — Main Hall Stand</span>
+        <span class="gcap" data-lang-th="งานประชุมประจำปี — บูธฮอลล์หลัก" data-lang-en="Annual Summit — Main Hall Stand">งานประชุมประจำปี — บูธฮอลล์หลัก</span>
       </div>
       <div class="frame g2">
         <img src="https://images.unsplash.com/photo-1746587224861-521244472226?w=800&h=500&fit=crop" alt="Friends posing in a photo booth" />
-        <span class="gcap">Open-Air Photo Booth</span>
+        <span class="gcap" data-lang-th="โฟโต้บูธแบบเปิดโล่ง" data-lang-en="Open-Air Photo Booth">โฟโต้บูธแบบเปิดโล่ง</span>
       </div>
       <div class="frame g3">
         <img src="https://images.unsplash.com/photo-1524777313293-86d2ab467344?w=800&h=500&fit=crop" alt="Wedding table decor with candles" />
-        <span class="gcap">Garden Wedding Lounge</span>
+        <span class="gcap" data-lang-th="เลาจน์งานแต่งในสวน" data-lang-en="Garden Wedding Lounge">เลาจน์งานแต่งในสวน</span>
       </div>
       <div class="frame g4">
         <img src="https://images.unsplash.com/photo-1760001551764-14eddf965019?w=600&h=500&fit=crop" alt="Trade show atrium with crowds" />
-        <span class="gcap">Tech Expo</span>
+        <span class="gcap" data-lang-th="งานเทคโนโลยีเอ็กซ์โป" data-lang-en="Tech Expo">งานเทคโนโลยีเอ็กซ์โป</span>
       </div>
       <div class="frame g5">
         <img src="https://images.unsplash.com/photo-1657208431551-cbf415b8ef26?w=600&h=500&fit=crop" alt="Crowd at a concert with lighting" />
-        <span class="gcap">Festival Brand Bar</span>
+        <span class="gcap" data-lang-th="บาร์แบรนด์ในเทศกาล" data-lang-en="Festival Brand Bar">บาร์แบรนด์ในเทศกาล</span>
       </div>
       <div class="frame g6">
         <img src="https://images.unsplash.com/photo-1712314947761-a8d718bd8c32?w=600&h=500&fit=crop" alt="Banquet hall with chandeliers" />
-        <span class="gcap">Gala Reception</span>
+        <span class="gcap" data-lang-th="งานเลี้ยงกาลาดินเนอร์" data-lang-en="Gala Reception">งานเลี้ยงกาลาดินเนอร์</span>
       </div>
     </div>
   </div>
@@ -582,10 +634,10 @@
 <section class="stats">
   <div class="wrap">
     <div class="stats-grid reveal">
-      <div class="stat"><div class="num">640+</div><div class="lbl">Booths built & installed</div></div>
-      <div class="stat"><div class="num">12</div><div class="lbl">Years in production</div></div>
-      <div class="stat"><div class="num">48h</div><div class="lbl">Typical turnaround on site</div></div>
-      <div class="stat"><div class="num">98%</div><div class="lbl">Clients who rebook us</div></div>
+      <div class="stat"><div class="num">640+</div><div class="lbl" data-lang-th="บูธที่สร้างและติดตั้ง" data-lang-en="Booths built &amp; installed">บูธที่สร้างและติดตั้ง</div></div>
+      <div class="stat"><div class="num">12</div><div class="lbl" data-lang-th="ปีในวงการโปรดักชัน" data-lang-en="Years in production">ปีในวงการโปรดักชัน</div></div>
+      <div class="stat"><div class="num">48h</div><div class="lbl" data-lang-th="เวลาติดตั้งหน้างานโดยเฉลี่ย" data-lang-en="Typical turnaround on site">เวลาติดตั้งหน้างานโดยเฉลี่ย</div></div>
+      <div class="stat"><div class="num">98%</div><div class="lbl" data-lang-th="ลูกค้าที่กลับมาใช้บริการซ้ำ" data-lang-en="Clients who rebook us">ลูกค้าที่กลับมาใช้บริการซ้ำ</div></div>
     </div>
   </div>
 </section>
@@ -594,12 +646,12 @@
 <section class="quote">
   <div class="wrap">
     <i data-lucide="quote" class="mark-q"></i>
-    <blockquote>
-      They handed us a booth that felt like its own little world — guests
-      kept circling back just to be in it. <em>Bless Studio made our launch
-      the photo everyone took.</em>
+    <blockquote
+      data-lang-th='พวกเขาส่งมอบบูธที่เหมือนเป็นโลกใบเล็กของตัวเอง — แขกในงานเดินวนกลับมาเพียงเพื่อได้อยู่ในนั้น <em>Bless Studio ทำให้งานเปิดตัวของเรากลายเป็นภาพที่ทุกคนต้องถ่าย</em>'
+      data-lang-en='They handed us a booth that felt like its own little world — guests kept circling back just to be in it. <em>Bless Studio made our launch the photo everyone took.</em>'>
+      พวกเขาส่งมอบบูธที่เหมือนเป็นโลกใบเล็กของตัวเอง — แขกในงานเดินวนกลับมาเพียงเพื่อได้อยู่ในนั้น <em>Bless Studio ทำให้งานเปิดตัวของเรากลายเป็นภาพที่ทุกคนต้องถ่าย</em>
     </blockquote>
-    <div class="by">Naya Phongsai — Head of Brand, Lumen Cosmetics</div>
+    <div class="by" data-lang-th="นยา พงษ์ใส — หัวหน้าฝ่ายแบรนด์, Lumen Cosmetics" data-lang-en="Naya Phongsai — Head of Brand, Lumen Cosmetics">นยา พงษ์ใส — หัวหน้าฝ่ายแบรนด์, Lumen Cosmetics</div>
   </div>
 </section>
 
@@ -607,37 +659,34 @@
 <section class="cta" id="contact">
   <div class="wrap cta-grid">
     <div class="reveal">
-      <span class="eyebrow">Let's build it</span>
-      <h2>Tell us about <em>your event</em></h2>
-      <p>
-        Share a few details and we'll come back within one business day with
-        ideas, availability and a clear quote — no obligation, no jargon.
-      </p>
+      <span class="eyebrow" data-lang-th="มาสร้างมันด้วยกัน" data-lang-en="Let's build it">มาสร้างมันด้วยกัน</span>
+      <h2 data-lang-th='เล่าให้เราฟังเกี่ยวกับ<em>งานของคุณ</em>' data-lang-en='Tell us about <em>your event</em>'>เล่าให้เราฟังเกี่ยวกับ<em>งานของคุณ</em></h2>
+      <p data-lang-th="บอกรายละเอียดสักเล็กน้อย แล้วเราจะติดต่อกลับภายในหนึ่งวันทำการ พร้อมไอเดีย ตารางเวลาที่ว่าง และใบเสนอราคาที่ชัดเจน — ไม่มีข้อผูกมัด ไม่มีศัพท์ยุ่งยาก" data-lang-en="Share a few details and we'll come back within one business day with ideas, availability and a clear quote — no obligation, no jargon.">บอกรายละเอียดสักเล็กน้อย แล้วเราจะติดต่อกลับภายในหนึ่งวันทำการ พร้อมไอเดีย ตารางเวลาที่ว่าง และใบเสนอราคาที่ชัดเจน — ไม่มีข้อผูกมัด ไม่มีศัพท์ยุ่งยาก</p>
     </div>
     <form class="cta-form reveal" onsubmit="return false;">
       <div class="field">
-        <label for="name">Your name</label>
-        <input id="name" type="text" placeholder="Jane Doe" />
+        <label for="name" data-lang-th="ชื่อของคุณ" data-lang-en="Your name">ชื่อของคุณ</label>
+        <input id="name" type="text" placeholder="สมชาย ใจดี" data-ph-th="สมชาย ใจดี" data-ph-en="Jane Doe" />
       </div>
       <div class="field">
-        <label for="email">Email</label>
-        <input id="email" type="email" placeholder="you@company.com" />
+        <label for="email" data-lang-th="อีเมล" data-lang-en="Email">อีเมล</label>
+        <input id="email" type="email" placeholder="you@company.com" data-ph-th="you@company.com" data-ph-en="you@company.com" />
       </div>
       <div class="field">
-        <label for="type">Event type</label>
+        <label for="type" data-lang-th="ประเภทงาน" data-lang-en="Event type">ประเภทงาน</label>
         <select id="type">
-          <option>Exhibition / Expo</option>
-          <option>Photo Booth</option>
-          <option>Brand Activation</option>
-          <option>Wedding</option>
-          <option>Other</option>
+          <option data-lang-th="งานแสดงสินค้า / เอ็กซ์โป" data-lang-en="Exhibition / Expo">งานแสดงสินค้า / เอ็กซ์โป</option>
+          <option data-lang-th="โฟโต้บูธ" data-lang-en="Photo Booth">โฟโต้บูธ</option>
+          <option data-lang-th="กิจกรรมแบรนด์" data-lang-en="Brand Activation">กิจกรรมแบรนด์</option>
+          <option data-lang-th="งานแต่งงาน" data-lang-en="Wedding">งานแต่งงาน</option>
+          <option data-lang-th="อื่นๆ" data-lang-en="Other">อื่นๆ</option>
         </select>
       </div>
       <div class="field">
-        <label for="date">Event date</label>
-        <input id="date" type="text" placeholder="e.g. 14 August 2026" />
+        <label for="date" data-lang-th="วันที่จัดงาน" data-lang-en="Event date">วันที่จัดงาน</label>
+        <input id="date" type="text" placeholder="เช่น 14 สิงหาคม 2569" data-ph-th="เช่น 14 สิงหาคม 2569" data-ph-en="e.g. 14 August 2026" />
       </div>
-      <button type="submit">Request a quote <i data-lucide="send"></i></button>
+      <button type="submit" data-lang-th='ขอใบเสนอราคา <i data-lucide="send"></i>' data-lang-en='Request a quote <i data-lucide="send"></i>'>ขอใบเสนอราคา <i data-lucide="send"></i></button>
     </form>
   </div>
 </section>
@@ -648,31 +697,31 @@
     <div class="foot-top">
       <div class="foot-logo">
         <span class="mark">Bless <em>Studio</em></span>
-        <p>Event booth rental, design and full production. Built in-studio, run on-site, struck clean.</p>
+        <p data-lang-th="ให้เช่า ออกแบบ และผลิตบูธอีเวนต์ครบวงจร ผลิตในสตูดิโอ ดูแลถึงหน้างาน เก็บงานสะอาดเรียบร้อย" data-lang-en="Event booth rental, design and full production. Built in-studio, run on-site, struck clean.">ให้เช่า ออกแบบ และผลิตบูธอีเวนต์ครบวงจร ผลิตในสตูดิโอ ดูแลถึงหน้างาน เก็บงานสะอาดเรียบร้อย</p>
       </div>
       <div class="foot-col">
-        <h4>Rentals</h4>
-        <a href="#services">Exhibition Booths</a>
-        <a href="#services">Photo Booths</a>
-        <a href="#services">Brand Activations</a>
-        <a href="#services">Wedding Lounges</a>
+        <h4 data-lang-th="บริการเช่า" data-lang-en="Rentals">บริการเช่า</h4>
+        <a href="#services" data-lang-th="บูธจัดแสดง" data-lang-en="Exhibition Booths">บูธจัดแสดง</a>
+        <a href="#services" data-lang-th="โฟโต้บูธ" data-lang-en="Photo Booths">โฟโต้บูธ</a>
+        <a href="#services" data-lang-th="กิจกรรมแบรนด์" data-lang-en="Brand Activations">กิจกรรมแบรนด์</a>
+        <a href="#services" data-lang-th="เลาจน์งานแต่งงาน" data-lang-en="Wedding Lounges">เลาจน์งานแต่งงาน</a>
       </div>
       <div class="foot-col">
-        <h4>Studio</h4>
-        <a href="#work">Our Craft</a>
-        <a href="#process">Process</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Get a Quote</a>
+        <h4 data-lang-th="สตูดิโอ" data-lang-en="Studio">สตูดิโอ</h4>
+        <a href="#work" data-lang-th="งานฝีมือของเรา" data-lang-en="Our Craft">งานฝีมือของเรา</a>
+        <a href="#process" data-lang-th="ขั้นตอน" data-lang-en="Process">ขั้นตอน</a>
+        <a href="#gallery" data-lang-th="แกลเลอรี" data-lang-en="Gallery">แกลเลอรี</a>
+        <a href="#contact" data-lang-th="ขอใบเสนอราคา" data-lang-en="Get a Quote">ขอใบเสนอราคา</a>
       </div>
       <div class="foot-col">
-        <h4>Contact</h4>
+        <h4 data-lang-th="ติดต่อ" data-lang-en="Contact">ติดต่อ</h4>
         <p>hello@blessstudio.co</p>
         <p>+66 2 000 0000</p>
-        <p>Bangkok, Thailand</p>
+        <p data-lang-th="กรุงเทพมหานคร ประเทศไทย" data-lang-en="Bangkok, Thailand">กรุงเทพมหานคร ประเทศไทย</p>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© 2026 Bless Studio Production. All rights reserved.</span>
+      <span data-lang-th="© 2026 Bless Studio Production สงวนลิขสิทธิ์" data-lang-en="© 2026 Bless Studio Production. All rights reserved.">© 2026 Bless Studio Production สงวนลิขสิทธิ์</span>
       <div class="socials">
         <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
         <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
@@ -685,6 +734,54 @@
 <script src="https://unpkg.com/lucide@0.460.0"></script>
 <script>
   lucide.createIcons();
+
+  // ---------- Language switcher ----------
+  const META = {
+    title: {
+      th: 'Bless Studio Production — ให้เช่าบูธอีเวนต์',
+      en: 'Bless Studio Production — Event Booth Rental'
+    },
+    desc: {
+      th: 'Bless Studio Production ออกแบบ ผลิต และดูแลบูธอีเวนต์ที่น่าจดจำ สำหรับงานเปิดตัว งานแสดงสินค้า งานแต่งงาน และกิจกรรมแบรนด์',
+      en: 'Bless Studio Production designs, builds and runs statement event booths for launches, expos, weddings and brand activations.'
+    }
+  };
+
+  function applyLang(lang) {
+    if (lang !== 'en') lang = 'th';
+    document.documentElement.lang = lang;
+
+    document.querySelectorAll('[data-lang-' + lang + ']').forEach(el => {
+      const val = el.getAttribute('data-lang-' + lang);
+      if (val !== null) el.innerHTML = val;
+    });
+
+    document.querySelectorAll('[data-ph-' + lang + ']').forEach(el => {
+      el.setAttribute('placeholder', el.getAttribute('data-ph-' + lang));
+    });
+
+    document.title = META.title[lang];
+    const md = document.querySelector('meta[name="description"]');
+    if (md) md.setAttribute('content', META.desc[lang]);
+
+    document.querySelectorAll('.lang-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.lang === lang);
+      b.setAttribute('aria-pressed', b.dataset.lang === lang);
+    });
+
+    try { localStorage.setItem('lang', lang); } catch (e) {}
+
+    // Re-render any icons brought in via innerHTML swaps
+    lucide.createIcons();
+  }
+
+  let saved = 'th';
+  try { saved = localStorage.getItem('lang') || 'th'; } catch (e) {}
+  applyLang(saved);
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+  });
 
   // Scroll reveal
   const io = new IntersectionObserver((entries) => {
