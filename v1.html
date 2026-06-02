@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bless Studio Production — Event Booth Rental</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bone: #f3eee4;
+    --bone-2: #ece5d7;
+    --ink: #1c1814;
+    --ink-soft: #4a443c;
+    --clay: #b9492b;
+    --clay-deep: #8f3620;
+    --line: #d7cdba;
+    --paper: #faf7f0;
+    --maxw: 1240px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bone);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--clay);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--clay);
+    display: inline-block;
+  }
+
+  /* ---------- Photo treatment ---------- */
+  .frame { position: relative; overflow: hidden; background: var(--bone-2); }
+  .frame img {
+    filter: saturate(0.82) contrast(1.03) brightness(0.98);
+    transition: transform 1.1s cubic-bezier(.16,.84,.44,1), filter .8s ease;
+  }
+  .frame:hover img { transform: scale(1.045); filter: saturate(1) contrast(1.05); }
+  .frame::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(28,24,20,0) 55%, rgba(28,24,20,0.16) 100%);
+    pointer-events: none;
+  }
+
+  /* ---------- Nav ---------- */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(243,238,228,0.86);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 78px; }
+  .logo { display: flex; align-items: baseline; gap: 9px; }
+  .logo .mark {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+  .logo .mark em { font-style: italic; color: var(--clay); }
+  .logo .sub {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .nav-links { display: flex; gap: 38px; align-items: center; }
+  .nav-links a {
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+    position: relative;
+    transition: color .25s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a::after {
+    content: ""; position: absolute; left: 0; bottom: -6px;
+    width: 0; height: 1px; background: var(--clay); transition: width .3s;
+  }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    border: 1px solid var(--ink);
+    border-radius: 100px;
+    padding: 11px 22px !important;
+    color: var(--ink) !important;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: background .3s, color .3s;
+  }
+  .nav-cta::after { display: none; }
+  .nav-cta:hover { background: var(--ink); color: var(--paper) !important; }
+  .nav-cta i { width: 15px; height: 15px; }
+  .menu-btn { display: none; background: none; border: none; cursor: pointer; color: var(--ink); }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 78px 0 64px; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
+    align-items: end;
+  }
+  .hero h1 {
+    font-size: clamp(3rem, 8.5vw, 6.6rem);
+    letter-spacing: -0.025em;
+  }
+  .hero h1 em { font-style: italic; color: var(--clay); }
+  .hero h1 .thin { font-weight: 300; }
+  .hero-lead {
+    margin-top: 30px;
+    max-width: 430px;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+  }
+  .hero-actions { margin-top: 38px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--clay);
+    color: var(--paper);
+    border-radius: 100px;
+    padding: 15px 30px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    display: inline-flex; align-items: center; gap: 10px;
+    transition: background .3s, transform .3s;
+  }
+  .btn-primary:hover { background: var(--clay-deep); transform: translateY(-2px); }
+  .btn-primary i { width: 17px; height: 17px; }
+  .btn-ghost {
+    font-size: 0.9rem; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 3px;
+    transition: gap .3s;
+  }
+  .btn-ghost:hover { gap: 14px; }
+  .btn-ghost i { width: 16px; height: 16px; }
+
+  .hero-visual {
+    position: relative;
+    height: 540px;
+  }
+  .hero-visual .frame { position: absolute; }
+  .hv-main { inset: 0 0 0 22%; border-radius: 4px; }
+  .hv-sub {
+    width: 46%; height: 230px; left: 0; bottom: -34px;
+    border-radius: 4px;
+    box-shadow: 0 24px 50px rgba(28,24,20,0.22);
+  }
+  .hv-badge {
+    position: absolute; top: -28px; right: 12px;
+    background: var(--ink); color: var(--paper);
+    border-radius: 50%;
+    width: 118px; height: 118px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; z-index: 3;
+  }
+  .hv-badge .n { font-family: 'Fraunces', serif; font-size: 1.9rem; line-height: 1; }
+  .hv-badge .t { font-size: 0.56rem; letter-spacing: 0.18em; text-transform: uppercase; margin-top: 5px; color: #c9b8a0; }
+
+  /* ---------- Marquee strip ---------- */
+  .strip {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--bone-2);
+    overflow: hidden;
+    margin-top: 70px;
+  }
+  .marquee {
+    display: flex; gap: 56px;
+    white-space: nowrap;
+    padding: 18px 0;
+    animation: slide 36s linear infinite;
+    width: max-content;
+  }
+  .marquee span {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    display: inline-flex; align-items: center; gap: 56px;
+  }
+  .marquee span::after { content: "✳"; font-style: normal; color: var(--clay); }
+  @keyframes slide { to { transform: translateX(-50%); } }
+
+  /* ---------- Section scaffolding ---------- */
+  section { padding: 110px 0; }
+  .sec-head { max-width: 760px; margin-bottom: 56px; }
+  .sec-head h2 {
+    font-size: clamp(2.1rem, 5vw, 3.5rem);
+    margin-top: 22px;
+    letter-spacing: -0.02em;
+  }
+  .sec-head h2 em { font-style: italic; color: var(--clay); }
+
+  /* ---------- Intro statement ---------- */
+  .statement { background: var(--paper); }
+  .statement .wrap { display: grid; grid-template-columns: 0.4fr 1fr; gap: 50px; align-items: start; }
+  .statement .label { font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--clay); font-weight: 500; }
+  .statement .big {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.6rem, 3.6vw, 2.55rem);
+    line-height: 1.22;
+    letter-spacing: -0.01em;
+    font-weight: 300;
+  }
+  .statement .big strong { font-weight: 500; }
+  .statement .big em { font-style: italic; color: var(--clay); }
+
+  /* ---------- Services ---------- */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .svc {
+    background: var(--bone);
+    padding: 40px 34px 46px;
+    transition: background .35s;
+    position: relative;
+  }
+  .svc:hover { background: var(--paper); }
+  .svc .ico {
+    width: 50px; height: 50px;
+    border: 1px solid var(--ink);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 26px;
+    transition: background .35s, color .35s, border-color .35s;
+  }
+  .svc:hover .ico { background: var(--clay); border-color: var(--clay); color: var(--paper); }
+  .svc .ico i { width: 22px; height: 22px; }
+  .svc h3 { font-size: 1.45rem; margin-bottom: 12px; }
+  .svc p { font-size: 0.92rem; color: var(--ink-soft); }
+  .svc .idx {
+    position: absolute; top: 30px; right: 32px;
+    font-family: 'Fraunces', serif;
+    font-size: 0.95rem; color: var(--line);
+  }
+
+  /* ---------- Process ---------- */
+  .process { background: var(--ink); color: var(--paper); }
+  .process .eyebrow { color: #e8a48f; }
+  .process .eyebrow::before { background: #e8a48f; }
+  .process .sec-head h2 em { color: #e8a48f; }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+  .step { border-top: 1px solid rgba(255,255,255,0.16); padding-top: 26px; }
+  .step .n {
+    font-family: 'Fraunces', serif;
+    font-size: 2.6rem; color: var(--clay);
+    line-height: 1; margin-bottom: 20px;
+    font-style: italic;
+  }
+  .step h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--paper); }
+  .step p { font-size: 0.88rem; color: #b7ada0; }
+
+  /* ---------- Gallery ---------- */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 150px;
+    gap: 18px;
+  }
+  .gallery-grid .frame { border-radius: 4px; }
+  .g1 { grid-column: span 7; grid-row: span 3; }
+  .g2 { grid-column: span 5; grid-row: span 2; }
+  .g3 { grid-column: span 5; grid-row: span 2; }
+  .g4 { grid-column: span 4; grid-row: span 2; }
+  .g5 { grid-column: span 4; grid-row: span 2; }
+  .g6 { grid-column: span 4; grid-row: span 2; }
+  .gcap {
+    position: absolute; left: 18px; bottom: 16px; z-index: 2;
+    color: var(--paper);
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
+    text-shadow: 0 1px 12px rgba(0,0,0,0.4);
+  }
+
+  /* ---------- Stats ---------- */
+  .stats { background: var(--paper); }
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+  .stat { text-align: left; border-left: 2px solid var(--clay); padding-left: 22px; }
+  .stat .num { font-family: 'Fraunces', serif; font-size: clamp(2.6rem, 5vw, 3.8rem); line-height: 1; }
+  .stat .lbl { font-size: 0.84rem; color: var(--ink-soft); margin-top: 12px; letter-spacing: 0.02em; }
+
+  /* ---------- Testimonial ---------- */
+  .quote { background: var(--clay); color: var(--paper); }
+  .quote .wrap { max-width: 940px; text-align: center; }
+  .quote i.mark-q { width: 44px; height: 44px; opacity: 0.7; margin-bottom: 14px; }
+  .quote blockquote {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.6rem, 3.8vw, 2.7rem);
+    line-height: 1.24;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+  }
+  .quote blockquote em { font-style: italic; }
+  .quote .by { margin-top: 32px; font-size: 0.86rem; letter-spacing: 0.12em; text-transform: uppercase; color: #ffe2d6; }
+
+  /* ---------- CTA ---------- */
+  .cta-grid { display: grid; grid-template-columns: 1fr 0.9fr; gap: 60px; align-items: center; }
+  .cta h2 { font-size: clamp(2.4rem, 5.6vw, 4.3rem); letter-spacing: -0.025em; }
+  .cta h2 em { font-style: italic; color: var(--clay); }
+  .cta p { margin-top: 24px; color: var(--ink-soft); max-width: 420px; font-size: 1.02rem; }
+  .cta-form { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 36px; }
+  .field { margin-bottom: 20px; }
+  .field label { display: block; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 8px; }
+  .field input, .field select {
+    width: 100%; border: none; border-bottom: 1px solid var(--line);
+    background: transparent; padding: 10px 2px; font-family: inherit; font-size: 0.98rem; color: var(--ink);
+    transition: border-color .3s;
+  }
+  .field input:focus, .field select:focus { outline: none; border-color: var(--clay); }
+  .cta-form button {
+    width: 100%; margin-top: 8px;
+    background: var(--ink); color: var(--paper);
+    border: none; border-radius: 100px; padding: 16px;
+    font-family: inherit; font-size: 0.92rem; font-weight: 500; letter-spacing: 0.02em;
+    cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    transition: background .3s;
+  }
+  .cta-form button:hover { background: var(--clay); }
+  .cta-form button i { width: 16px; height: 16px; }
+
+  /* ---------- Footer ---------- */
+  footer { background: var(--ink); color: #b7ada0; padding: 72px 0 36px; }
+  .foot-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 50px; border-bottom: 1px solid rgba(255,255,255,0.12); }
+  .foot-logo .mark { font-family: 'Fraunces', serif; font-size: 1.6rem; color: var(--paper); }
+  .foot-logo .mark em { font-style: italic; color: #e8a48f; }
+  .foot-logo p { margin-top: 16px; font-size: 0.9rem; max-width: 280px; }
+  .foot-col h4 { font-family: 'Inter', sans-serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--paper); margin-bottom: 18px; font-weight: 600; }
+  .foot-col a, .foot-col p { display: block; font-size: 0.9rem; margin-bottom: 11px; transition: color .25s; }
+  .foot-col a:hover { color: #e8a48f; }
+  .foot-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 28px; font-size: 0.8rem; flex-wrap: wrap; gap: 14px; }
+  .socials { display: flex; gap: 14px; }
+  .socials a {
+    width: 38px; height: 38px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; transition: background .3s, color .3s, border-color .3s;
+  }
+  .socials a:hover { background: #e8a48f; color: var(--ink); border-color: #e8a48f; }
+  .socials i { width: 16px; height: 16px; }
+
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .9s ease, transform .9s cubic-bezier(.16,.84,.44,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 920px) {
+    .nav-links { display: none; }
+    .menu-btn { display: inline-flex; }
+    .hero-grid, .statement .wrap, .cta-grid { grid-template-columns: 1fr; }
+    .hero-visual { height: 420px; margin-top: 20px; }
+    .services-grid, .steps, .stats-grid { grid-template-columns: 1fr 1fr; }
+    .statement .label { display: none; }
+  }
+  @media (max-width: 600px) {
+    .wrap { padding: 0 22px; }
+    section { padding: 72px 0; }
+    .services-grid, .steps, .stats-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 130px; }
+    .g1 { grid-column: span 2; grid-row: span 2; }
+    .g2, .g3, .g4, .g5, .g6 { grid-column: span 1; grid-row: span 1; }
+    .hv-badge { width: 92px; height: 92px; }
+    .hv-badge .n { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo">
+      <span class="mark">Bless <em>Studio</em></span>
+      <span class="sub">Production</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#services">Rentals</a>
+      <a href="#process">Process</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact" class="nav-cta">Request a quote <i data-lucide="arrow-up-right"></i></a>
+    </nav>
+    <button class="menu-btn" aria-label="Menu"><i data-lucide="menu"></i></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Event Booth Rental Studio</span>
+      <h1>
+        Booths<br />
+        built to be <em>remembered</em><br />
+        <span class="thin">— not just rented.</span>
+      </h1>
+      <p class="hero-lead">
+        We design, build, and run statement booths for launches, expos,
+        weddings and brand activations. You bring the occasion; we bring
+        the structure, the light, and the feeling.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Plan your booth <i data-lucide="arrow-right"></i></a>
+        <a href="#work" class="btn-ghost">See recent builds <i data-lucide="arrow-down"></i></a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hv-badge">
+        <span class="n">12<span style="font-size:1rem">+</span></span>
+        <span class="t">Years on site</span>
+      </div>
+      <div class="frame hv-main">
+        <img src="https://images.unsplash.com/photo-1558620013-a08999547a36?w=900&h=1100&fit=crop" alt="Event stage with dramatic lighting" />
+      </div>
+      <div class="frame hv-sub">
+        <img src="https://images.unsplash.com/photo-1778402566957-c21d77a67d0d?w=700&h=500&fit=crop" alt="Decorated event booths inside a venue" />
+      </div>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="marquee" id="marquee">
+      <span>Brand Activations</span><span>Wedding Lounges</span><span>Expo Stands</span>
+      <span>Photo Booths</span><span>Product Launches</span><span>Pop-up Bars</span>
+      <span>Brand Activations</span><span>Wedding Lounges</span><span>Expo Stands</span>
+      <span>Photo Booths</span><span>Product Launches</span><span>Pop-up Bars</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATEMENT -->
+<section class="statement" id="work">
+  <div class="wrap">
+    <div class="label">(Our craft)</div>
+    <p class="big reveal">
+      A booth is the one place where a crowd <em>stops moving</em>. We treat
+      that pause as the brief — engineering every <strong>frame, surface and
+      sightline</strong> so the moment your guests step inside feels deliberate,
+      generous, and entirely yours.
+    </p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">What we rent</span>
+      <h2>Rental systems for every <em>kind of gathering</em></h2>
+    </div>
+    <div class="services-grid reveal">
+      <div class="svc">
+        <span class="idx">01</span>
+        <div class="ico"><i data-lucide="store"></i></div>
+        <h3>Exhibition Booths</h3>
+        <p>Modular stands for trade shows and expos — built for footfall, fast install, and a brand that reads from across the hall.</p>
+      </div>
+      <div class="svc">
+        <span class="idx">02</span>
+        <div class="ico"><i data-lucide="camera"></i></div>
+        <h3>Photo & 360 Booths</h3>
+        <p>Open-air and enclosed photo experiences with custom backdrops, instant prints, and a shareable highlight reel.</p>
+      </div>
+      <div class="svc">
+        <span class="idx">03</span>
+        <div class="ico"><i data-lucide="sparkles"></i></div>
+        <h3>Brand Activations</h3>
+        <p>Immersive pop-ups, sampling bars and interactive corners designed to turn passers-by into a queue worth talking about.</p>
+      </div>
+      <div class="svc">
+        <span class="idx">04</span>
+        <div class="ico"><i data-lucide="heart"></i></div>
+        <h3>Wedding Lounges</h3>
+        <p>Soft, intimate settings — seating vignettes, floral frames and warm lighting that hold a celebration together.</p>
+      </div>
+      <div class="svc">
+        <span class="idx">05</span>
+        <div class="ico"><i data-lucide="lightbulb"></i></div>
+        <h3>Lighting & Staging</h3>
+        <p>The layer most people feel but never name. We tune colour, contrast and shadow to flatter both faces and product.</p>
+      </div>
+      <div class="svc">
+        <span class="idx">06</span>
+        <div class="ico"><i data-lucide="package-check"></i></div>
+        <h3>Full Production</h3>
+        <p>Delivery, build, on-site crew and strike — one team owning the booth from blank floor to clean exit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">How it works</span>
+      <h2>Four steps from <em>brief to breakdown</em></h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="n">01</div><h3>Brief & Concept</h3><p>We map your goals, audience and venue, then sketch a booth concept with a fixed, transparent quote.</p></div>
+      <div class="step reveal"><div class="n">02</div><h3>Design & Build</h3><p>Renders, materials and finishes are locked. We fabricate in-studio so nothing is a surprise on site.</p></div>
+      <div class="step reveal"><div class="n">03</div><h3>Install & Run</h3><p>Our crew delivers, builds and staffs the booth — testing every light and screen before doors open.</p></div>
+      <div class="step reveal"><div class="n">04</div><h3>Strike & Wrap</h3><p>When it ends, we strike cleanly and send you the gallery, the metrics, and the highlights.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Selected work</span>
+      <h2>A few rooms we've <em>made memorable</em></h2>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="frame g1">
+        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=900&h=900&fit=crop" alt="Corporate conference audience" />
+        <span class="gcap">Annual Summit — Main Hall Stand</span>
+      </div>
+      <div class="frame g2">
+        <img src="https://images.unsplash.com/photo-1746587224861-521244472226?w=800&h=500&fit=crop" alt="Friends posing in a photo booth" />
+        <span class="gcap">Open-Air Photo Booth</span>
+      </div>
+      <div class="frame g3">
+        <img src="https://images.unsplash.com/photo-1524777313293-86d2ab467344?w=800&h=500&fit=crop" alt="Wedding table decor with candles" />
+        <span class="gcap">Garden Wedding Lounge</span>
+      </div>
+      <div class="frame g4">
+        <img src="https://images.unsplash.com/photo-1760001551764-14eddf965019?w=600&h=500&fit=crop" alt="Trade show atrium with crowds" />
+        <span class="gcap">Tech Expo</span>
+      </div>
+      <div class="frame g5">
+        <img src="https://images.unsplash.com/photo-1657208431551-cbf415b8ef26?w=600&h=500&fit=crop" alt="Crowd at a concert with lighting" />
+        <span class="gcap">Festival Brand Bar</span>
+      </div>
+      <div class="frame g6">
+        <img src="https://images.unsplash.com/photo-1712314947761-a8d718bd8c32?w=600&h=500&fit=crop" alt="Banquet hall with chandeliers" />
+        <span class="gcap">Gala Reception</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stats-grid reveal">
+      <div class="stat"><div class="num">640+</div><div class="lbl">Booths built & installed</div></div>
+      <div class="stat"><div class="num">12</div><div class="lbl">Years in production</div></div>
+      <div class="stat"><div class="num">48h</div><div class="lbl">Typical turnaround on site</div></div>
+      <div class="stat"><div class="num">98%</div><div class="lbl">Clients who rebook us</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="quote">
+  <div class="wrap">
+    <i data-lucide="quote" class="mark-q"></i>
+    <blockquote>
+      They handed us a booth that felt like its own little world — guests
+      kept circling back just to be in it. <em>Bless Studio made our launch
+      the photo everyone took.</em>
+    </blockquote>
+    <div class="by">Naya Phongsai — Head of Brand, Lumen Cosmetics</div>
+  </div>
+</section>
+
+<!-- CTA / CONTACT -->
+<section class="cta" id="contact">
+  <div class="wrap cta-grid">
+    <div class="reveal">
+      <span class="eyebrow">Let's build it</span>
+      <h2>Tell us about <em>your event</em></h2>
+      <p>
+        Share a few details and we'll come back within one business day with
+        ideas, availability and a clear quote — no obligation, no jargon.
+      </p>
+    </div>
+    <form class="cta-form reveal" onsubmit="return false;">
+      <div class="field">
+        <label for="name">Your name</label>
+        <input id="name" type="text" placeholder="Jane Doe" />
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" type="email" placeholder="you@company.com" />
+      </div>
+      <div class="field">
+        <label for="type">Event type</label>
+        <select id="type">
+          <option>Exhibition / Expo</option>
+          <option>Photo Booth</option>
+          <option>Brand Activation</option>
+          <option>Wedding</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="date">Event date</label>
+        <input id="date" type="text" placeholder="e.g. 14 August 2026" />
+      </div>
+      <button type="submit">Request a quote <i data-lucide="send"></i></button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-logo">
+        <span class="mark">Bless <em>Studio</em></span>
+        <p>Event booth rental, design and full production. Built in-studio, run on-site, struck clean.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Rentals</h4>
+        <a href="#services">Exhibition Booths</a>
+        <a href="#services">Photo Booths</a>
+        <a href="#services">Brand Activations</a>
+        <a href="#services">Wedding Lounges</a>
+      </div>
+      <div class="foot-col">
+        <h4>Studio</h4>
+        <a href="#work">Our Craft</a>
+        <a href="#process">Process</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Get a Quote</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <p>hello@blessstudio.co</p>
+        <p>+66 2 000 0000</p>
+        <p>Bangkok, Thailand</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Bless Studio Production. All rights reserved.</span>
+      <div class="socials">
+        <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+        <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+        <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@0.460.0"></script>
+<script>
+  lucide.createIcons();
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.14 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Mobile menu -> jump to contact (lightweight)
+  document.querySelector('.menu-btn').addEventListener('click', () => {
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+  });
+</script>
+</body>
+</html>

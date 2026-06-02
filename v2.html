@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bless Studio Production — Booth Rentals for Unforgettable Nights</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.460.0"></script>
+<style>
+  :root{
+    --cream:#F4EEE6;
+    --paper:#FBF8F3;
+    --ink:#181513;
+    --ink-soft:#4A433D;
+    --punch:#F0502E;
+    --punch-deep:#C73B1E;
+    --plum:#3B2A3A;
+    --line:#DCD3C7;
+    --radius:2px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:500;line-height:1.05;letter-spacing:-0.01em}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 32px}
+  .eyebrow{
+    font-family:'Inter',sans-serif;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--punch);
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--punch)}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(244,238,230,0.85);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .logo{font-family:'Fraunces',serif;font-size:23px;font-weight:600;letter-spacing:-0.02em;display:flex;align-items:baseline;gap:8px}
+  .logo .dot{color:var(--punch)}
+  .logo small{font-family:'Inter';font-size:10px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--ink-soft)}
+  .nav-links{display:flex;gap:38px;align-items:center}
+  .nav-links a{font-size:14px;font-weight:500;color:var(--ink-soft);transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    font-size:14px;font-weight:600;
+    padding:13px 24px;border-radius:100px;
+    background:var(--ink);color:var(--paper);
+    transition:transform .2s ease, background .2s ease;
+    border:1px solid var(--ink);
+  }
+  .btn:hover{background:var(--punch);border-color:var(--punch);transform:translateY(-2px)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .nav-cta{display:inline-flex}
+  .burger{display:none;background:none;border:none;cursor:pointer;color:var(--ink)}
+
+  /* HERO */
+  .hero{padding:72px 0 40px;position:relative}
+  .hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:end}
+  .hero h1{font-size:clamp(54px,8vw,108px);font-weight:500}
+  .hero h1 em{font-style:italic;color:var(--punch)}
+  .hero-lede{max-width:430px;margin:28px 0 34px;font-size:18px;color:var(--ink-soft)}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .hero-meta{display:flex;gap:34px;margin-top:46px;border-top:1px solid var(--line);padding-top:26px;flex-wrap:wrap}
+  .hero-meta .num{font-family:'Fraunces';font-size:34px;font-weight:600;line-height:1}
+  .hero-meta .lbl{font-size:12.5px;color:var(--ink-soft);margin-top:6px;max-width:130px}
+  .hero-figure{position:relative}
+  .hero-figure img{
+    width:100%;height:560px;object-fit:cover;border-radius:var(--radius);
+    filter:saturate(1.05) contrast(1.02);
+  }
+  .hero-badge{
+    position:absolute;left:-26px;bottom:42px;
+    background:var(--punch);color:var(--paper);
+    padding:18px 22px;border-radius:var(--radius);
+    max-width:200px;box-shadow:0 18px 40px rgba(240,80,46,0.28);
+  }
+  .hero-badge .tag{font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;opacity:.8}
+  .hero-badge p{font-family:'Fraunces';font-size:19px;line-height:1.2;margin-top:6px}
+
+  /* MARQUEE */
+  .marquee{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    overflow:hidden;padding:20px 0;margin-top:46px;background:var(--paper);
+  }
+  .marquee-track{display:flex;gap:54px;white-space:nowrap;animation:scroll 32s linear infinite;width:max-content}
+  .marquee-item{display:inline-flex;align-items:center;gap:14px;font-family:'Fraunces';font-size:24px;font-style:italic;color:var(--ink)}
+  .marquee-item i{width:18px;height:18px;color:var(--punch)}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  /* SECTION SHELL */
+  section{position:relative}
+  .pad{padding:104px 0}
+  .sec-head{max-width:680px;margin-bottom:56px}
+  .sec-head h2{font-size:clamp(34px,4.6vw,58px);margin-top:18px}
+  .sec-head p{margin-top:20px;color:var(--ink-soft);font-size:18px}
+
+  /* INTRO STATEMENT */
+  .statement{background:var(--ink);color:var(--paper)}
+  .statement .wrap{padding:110px 32px}
+  .statement-grid{display:grid;grid-template-columns:0.8fr 1.2fr;gap:60px;align-items:start}
+  .statement .eyebrow{color:#F8B7A5}
+  .statement .eyebrow::before{background:#F8B7A5}
+  .big-quote{font-family:'Fraunces';font-size:clamp(28px,3.6vw,46px);font-weight:400;line-height:1.22;letter-spacing:-0.01em}
+  .big-quote span{color:var(--punch);font-style:italic}
+  .statement-side{font-size:15.5px;color:#C9C0B8;line-height:1.7}
+  .statement-side p+p{margin-top:18px}
+
+  /* BOOTHS */
+  .booth-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+  .booth{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;display:flex;flex-direction:column;transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .booth:hover{transform:translateY(-5px);box-shadow:0 24px 50px rgba(24,21,19,0.12)}
+  .booth-img{position:relative;height:260px;overflow:hidden}
+  .booth-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+  .booth:hover .booth-img img{transform:scale(1.05)}
+  .booth-no{
+    position:absolute;top:16px;left:16px;
+    background:var(--cream);color:var(--ink);
+    font-family:'Fraunces';font-weight:600;font-size:14px;
+    width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  }
+  .booth-body{padding:28px 28px 32px}
+  .booth-body h3{font-size:27px;margin-bottom:10px}
+  .booth-body p{font-size:15px;color:var(--ink-soft);margin-bottom:18px}
+  .booth-tags{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:12px;font-weight:500;padding:6px 12px;border:1px solid var(--line);border-radius:100px;color:var(--ink-soft)}
+
+  /* PROCESS */
+  .process{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:20px}
+  .step{padding:36px 30px 36px 0;border-top:2px solid var(--ink)}
+  .step:not(:last-child){padding-right:30px}
+  .step .s-no{font-family:'Fraunces';font-style:italic;font-size:15px;color:var(--punch);font-weight:500}
+  .step h3{font-size:24px;margin:14px 0 10px}
+  .step p{font-size:14.5px;color:var(--ink-soft)}
+  .step i{width:22px;height:22px;color:var(--ink);margin-top:18px}
+
+  /* GALLERY */
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:16px}
+  .gallery figure{overflow:hidden;border-radius:var(--radius);position:relative}
+  .gallery img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+  .gallery figure:hover img{transform:scale(1.06)}
+  .g-tall{grid-row:span 2}
+  .g-wide{grid-column:span 2}
+  .gallery figcaption{
+    position:absolute;left:14px;bottom:12px;color:#fff;font-family:'Fraunces';font-style:italic;
+    font-size:16px;text-shadow:0 2px 12px rgba(0,0,0,0.5);
+  }
+
+  /* WHY / STATS BAND */
+  .why{background:var(--punch);color:var(--paper)}
+  .why .wrap{padding:96px 32px}
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .why h2{font-size:clamp(34px,4.4vw,54px)}
+  .why .eyebrow{color:#FFE0D5}
+  .why .eyebrow::before{background:#FFE0D5}
+  .why-list{margin-top:24px}
+  .why-list li{list-style:none;display:flex;gap:16px;padding:18px 0;border-top:1px solid rgba(255,255,255,0.22);font-size:15.5px}
+  .why-list li i{flex-shrink:0;width:20px;height:20px;margin-top:3px}
+  .stat-cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .stat-card{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:var(--radius);padding:30px 26px}
+  .stat-card .n{font-family:'Fraunces';font-size:52px;font-weight:600;line-height:1}
+  .stat-card .t{font-size:13.5px;margin-top:10px;color:#FFE0D5}
+
+  /* TESTIMONIALS */
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .quote-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:34px 30px;display:flex;flex-direction:column}
+  .stars{display:flex;gap:3px;color:var(--punch);margin-bottom:18px}
+  .stars i{width:16px;height:16px;fill:var(--punch)}
+  .quote-card p{font-family:'Fraunces';font-size:20px;line-height:1.4;font-weight:400;flex:1}
+  .quote-who{display:flex;align-items:center;gap:12px;margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
+  .avatar{width:42px;height:42px;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-family:'Fraunces';font-weight:600;font-size:16px}
+  .quote-who .nm{font-weight:600;font-size:14.5px}
+  .quote-who .rl{font-size:13px;color:var(--ink-soft)}
+
+  /* PACKAGES */
+  .packages{background:var(--paper);border-top:1px solid var(--line)}
+  .pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .pkg{border:1px solid var(--line);border-radius:var(--radius);padding:36px 32px;background:var(--cream);display:flex;flex-direction:column}
+  .pkg.feature{background:var(--ink);color:var(--paper);border-color:var(--ink);transform:scale(1.03)}
+  .pkg .tier{font-size:12px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--punch)}
+  .pkg.feature .tier{color:#F8B7A5}
+  .pkg .price{font-family:'Fraunces';font-size:46px;font-weight:600;margin:16px 0 4px;line-height:1}
+  .pkg .price span{font-family:'Inter';font-size:15px;font-weight:500;color:var(--ink-soft)}
+  .pkg.feature .price span{color:#C9C0B8}
+  .pkg .desc{font-size:14px;color:var(--ink-soft);margin-bottom:24px}
+  .pkg.feature .desc{color:#C9C0B8}
+  .pkg ul{list-style:none;margin-bottom:28px;flex:1}
+  .pkg ul li{display:flex;gap:11px;font-size:14.5px;padding:9px 0;border-bottom:1px solid var(--line)}
+  .pkg.feature ul li{border-color:rgba(255,255,255,0.15)}
+  .pkg ul li i{width:17px;height:17px;color:var(--punch);flex-shrink:0;margin-top:3px}
+  .pkg .btn{justify-content:center}
+  .pkg.feature .btn{background:var(--punch);border-color:var(--punch)}
+  .pkg.feature .btn:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+  .pkg-flag{font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#F8B7A5;margin-bottom:-8px}
+
+  /* CTA */
+  .cta{background:var(--ink);color:var(--paper);text-align:center;overflow:hidden;position:relative}
+  .cta .wrap{padding:120px 32px;position:relative;z-index:2}
+  .cta h2{font-size:clamp(40px,6vw,84px);font-weight:500}
+  .cta h2 em{font-style:italic;color:var(--punch)}
+  .cta p{max-width:480px;margin:24px auto 38px;color:#C9C0B8;font-size:18px}
+  .cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .cta .btn-ghost{color:var(--paper);border-color:rgba(255,255,255,0.35)}
+  .cta .btn-ghost:hover{background:var(--paper);color:var(--ink)}
+  .cta-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(240,80,46,0.35),transparent 65%);top:-180px;right:-120px;z-index:1}
+
+  /* FOOTER */
+  footer{background:var(--cream);padding:72px 0 36px}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid var(--line)}
+  footer .logo{font-size:26px;margin-bottom:16px}
+  .foot-about{font-size:14.5px;color:var(--ink-soft);max-width:300px}
+  .foot-col h4{font-family:'Inter';font-size:12px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink);margin-bottom:18px}
+  .foot-col a{display:block;font-size:14.5px;color:var(--ink-soft);padding:6px 0;transition:color .2s}
+  .foot-col a:hover{color:var(--punch)}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;flex-wrap:wrap;gap:16px}
+  .foot-bottom p{font-size:13.5px;color:var(--ink-soft)}
+  .socials{display:flex;gap:12px}
+  .socials a{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--ink);transition:all .2s}
+  .socials a:hover{background:var(--punch);border-color:var(--punch);color:var(--paper)}
+  .socials i{width:17px;height:17px}
+
+  /* RESPONSIVE */
+  @media(max-width:980px){
+    .hero-grid,.statement-grid,.why-grid{grid-template-columns:1fr;gap:40px}
+    .hero-figure img{height:420px}
+    .steps{grid-template-columns:1fr 1fr}
+    .gallery{grid-template-columns:repeat(2,1fr)}
+    .quotes,.pkg-grid{grid-template-columns:1fr}
+    .pkg.feature{transform:none}
+    .booth-grid{gap:20px}
+  }
+  @media(max-width:680px){
+    body{font-size:16px}
+    .wrap{padding:0 20px}
+    .nav-links{display:none}
+    .nav-cta{display:none}
+    .burger{display:block}
+    .pad{padding:72px 0}
+    .booth-grid{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+    .gallery{grid-template-columns:1fr;grid-auto-rows:230px}
+    .g-tall,.g-wide{grid-column:auto;grid-row:auto}
+    .stat-cards{grid-template-columns:1fr}
+    .hero-badge{left:0;bottom:-20px}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .hero h1{font-size:clamp(46px,13vw,72px)}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap nav-inner">
+    <a href="#" class="logo">Bless<span class="dot">.</span>Studio <small>Production</small></a>
+    <div class="nav-links">
+      <a href="#booths">Booths</a>
+      <a href="#process">How it works</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#packages">Packages</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="btn nav-cta">Book a date <i data-lucide="arrow-up-right"></i></a>
+    <button class="burger" aria-label="Menu"><i data-lucide="menu"></i></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Event Booth Rentals</span>
+      <h1>The booth your guests <em>won't</em> stop talking about.</h1>
+      <p class="hero-lede">We design, deliver and run premium photo booths for weddings, brand launches and milestone parties — so every laugh leaves with a print in hand.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn">Check your date <i data-lucide="calendar-check"></i></a>
+        <a href="#booths" class="btn btn-ghost">Explore booths</a>
+      </div>
+      <div class="hero-meta">
+        <div>
+          <div class="num">900+</div>
+          <div class="lbl">Events captured since 2016</div>
+        </div>
+        <div>
+          <div class="num">4.9<span style="font-size:18px;color:var(--punch)">★</span></div>
+          <div class="lbl">Average client rating</div>
+        </div>
+        <div>
+          <div class="num">∞</div>
+          <div class="lbl">Unlimited prints, every booking</div>
+        </div>
+      </div>
+    </div>
+    <figure class="hero-figure">
+      <img src="https://images.unsplash.com/photo-1746587224861-521244472226?w=900&h=1120&fit=crop" alt="Friends posing happily in a photo booth with props">
+      <div class="hero-badge">
+        <div class="tag">On site in</div>
+        <p>45 min setup, zero stress</p>
+      </div>
+    </figure>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="marquee-item"><i data-lucide="sparkles"></i> Weddings</span>
+    <span class="marquee-item"><i data-lucide="building-2"></i> Corporate Galas</span>
+    <span class="marquee-item"><i data-lucide="cake"></i> Birthdays</span>
+    <span class="marquee-item"><i data-lucide="graduation-cap"></i> Graduations</span>
+    <span class="marquee-item"><i data-lucide="party-popper"></i> Brand Launches</span>
+    <span class="marquee-item"><i data-lucide="gift"></i> Holiday Parties</span>
+    <span class="marquee-item"><i data-lucide="sparkles"></i> Weddings</span>
+    <span class="marquee-item"><i data-lucide="building-2"></i> Corporate Galas</span>
+    <span class="marquee-item"><i data-lucide="cake"></i> Birthdays</span>
+    <span class="marquee-item"><i data-lucide="graduation-cap"></i> Graduations</span>
+    <span class="marquee-item"><i data-lucide="party-popper"></i> Brand Launches</span>
+    <span class="marquee-item"><i data-lucide="gift"></i> Holiday Parties</span>
+  </div>
+</div>
+
+<!-- STATEMENT -->
+<section class="statement">
+  <div class="wrap statement-grid">
+    <div>
+      <span class="eyebrow">Our studio</span>
+      <p class="big-quote">A great booth isn't equipment in a corner. It's a <span>gathering place</span> — where strangers become a conga line and the shyest guest finally lets loose.</p>
+    </div>
+    <div class="statement-side">
+      <p>Bless Studio Production started with a single open-air rig and a stubborn belief: the photo booth should be the most fun ten feet of any room. Today we build, light and staff every setup ourselves.</p>
+      <p>No vending-machine kiosks. No anonymous drop-offs. A real attendant arrives early, dials in the lighting for your venue, and keeps the line moving and the props flying all night long.</p>
+      <p>You get the prints, the digital gallery, and a room full of people who can't stop smiling. We handle everything in between.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BOOTHS -->
+<section class="pad" id="booths">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">The lineup</span>
+      <h2>Four booths, one obsession with the perfect frame.</h2>
+      <p>Each rig is hand-built and arrives with a trained attendant, premium props and a custom print layout matched to your event.</p>
+    </div>
+    <div class="booth-grid">
+      <article class="booth">
+        <div class="booth-img">
+          <span class="booth-no">01</span>
+          <img src="https://images.unsplash.com/photo-1647427854253-b92bb40c9330?w=720&h=520&fit=crop" alt="Studio booth with a bold backdrop and a chair">
+        </div>
+        <div class="booth-body">
+          <h3>The Open-Air</h3>
+          <p>An airy setup with a designer backdrop that fits eight friends in one shot. The crowd favourite, and our most-booked rig.</p>
+          <div class="booth-tags"><span class="chip">Custom backdrop</span><span class="chip">Group shots</span><span class="chip">DSLR quality</span></div>
+        </div>
+      </article>
+      <article class="booth">
+        <div class="booth-img">
+          <span class="booth-no">02</span>
+          <img src="https://images.unsplash.com/photo-1761416351525-fa957d228535?w=720&h=520&fit=crop" alt="Vintage van with a neon photos sign">
+        </div>
+        <div class="booth-body">
+          <h3>The Vintage Roamer</h3>
+          <p>A restored camper that rolls right into your venue or garden. Equal parts photo booth and showpiece centrepiece.</p>
+          <div class="booth-tags"><span class="chip">Outdoor ready</span><span class="chip">Statement piece</span><span class="chip">Neon glow</span></div>
+        </div>
+      </article>
+      <article class="booth">
+        <div class="booth-img">
+          <span class="booth-no">03</span>
+          <img src="https://images.unsplash.com/photo-1763652566301-e88adc3d3d89?w=720&h=520&fit=crop" alt="Person celebrating with balloons and decorations">
+        </div>
+        <div class="booth-body">
+          <h3>The 360 Spinner</h3>
+          <p>Step onto the platform and the camera orbits you in slow motion. Pure social-media gold — shareable clips in seconds.</p>
+          <div class="booth-tags"><span class="chip">Slow-mo video</span><span class="chip">Instant share</span><span class="chip">Show-stopper</span></div>
+        </div>
+      </article>
+      <article class="booth">
+        <div class="booth-img">
+          <span class="booth-no">04</span>
+          <img src="https://images.unsplash.com/photo-1761574030105-c5b4dc65a76d?w=720&h=520&fit=crop" alt="Happy birthday neon sign amidst greenery">
+        </div>
+        <div class="booth-body">
+          <h3>The Neon Lounge</h3>
+          <p>A glowing enclosed studio with mood lighting and a custom neon sign bearing your name, date or brand.</p>
+          <div class="booth-tags"><span class="chip">Custom neon</span><span class="chip">Cinematic light</span><span class="chip">Brandable</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process pad" id="process">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">How it works</span>
+      <h2>From "we should get a booth" to a room full of prints.</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="s-no">Step 01</span>
+        <h3>Lock the date</h3>
+        <p>Tell us your venue, headcount and vibe. We confirm availability and hold your date in minutes.</p>
+        <i data-lucide="calendar-check"></i>
+      </div>
+      <div class="step">
+        <span class="s-no">Step 02</span>
+        <h3>Design the set</h3>
+        <p>We craft your print layout, backdrop and props to match your theme — and send a proof to approve.</p>
+        <i data-lucide="palette"></i>
+      </div>
+      <div class="step">
+        <span class="s-no">Step 03</span>
+        <h3>We arrive early</h3>
+        <p>Your attendant sets up 45 minutes ahead, lights the booth for the room, and tests every print.</p>
+        <i data-lucide="truck"></i>
+      </div>
+      <div class="step">
+        <span class="s-no">Step 04</span>
+        <h3>Everyone smiles</h3>
+        <p>Unlimited prints all night, a private online gallery the next morning, and zero cleanup for you.</p>
+        <i data-lucide="party-popper"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="pad" id="gallery">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">In the wild</span>
+      <h2>Real nights, real grins.</h2>
+      <p>A glance at the kind of energy our booths pull out of every room.</p>
+    </div>
+    <div class="gallery">
+      <figure class="g-tall">
+        <img src="https://images.unsplash.com/photo-1513906029980-32d13afe6d8c?w=600&h=820&fit=crop" alt="Couple laughing in green grass">
+        <figcaption>Garden weddings</figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=520&h=420&fit=crop" alt="People raising glasses in celebration">
+        <figcaption>Toasts</figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=520&h=420&fit=crop" alt="People partying with confetti">
+        <figcaption>Confetti drops</figcaption>
+      </figure>
+      <figure class="g-wide">
+        <img src="https://images.unsplash.com/photo-1439539698758-ba2680ecadb9?w=900&h=420&fit=crop" alt="Guests walking at a party at night">
+        <figcaption>After dark</figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1758870041148-31d28fdf34d9?w=520&h=420&fit=crop" alt="Illuminated number with balloon decorations">
+        <figcaption>Milestones</figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?w=520&h=420&fit=crop" alt="People inside a conference event">
+        <figcaption>Corporate</figcaption>
+      </figure>
+      <figure class="g-wide">
+        <img src="https://images.unsplash.com/photo-1653821355736-0c2598d0a63e?w=900&h=420&fit=crop" alt="Table set up for a party with candles and flowers">
+        <figcaption>Styled events</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why">
+  <div class="wrap why-grid">
+    <div>
+      <span class="eyebrow">Why Bless Studio</span>
+      <h2>Booked once, requested by name forever after.</h2>
+      <ul class="why-list">
+        <li><i data-lucide="user-check"></i> A trained attendant runs every booth — never a drop-and-go kiosk.</li>
+        <li><i data-lucide="printer"></i> Unlimited, lab-grade prints in hand within ten seconds.</li>
+        <li><i data-lucide="cloud-download"></i> A private digital gallery delivered the morning after.</li>
+        <li><i data-lucide="shield-check"></i> Fully insured, with backup gear on every truck.</li>
+      </ul>
+    </div>
+    <div class="stat-cards">
+      <div class="stat-card"><div class="n">900+</div><div class="t">Events since 2016</div></div>
+      <div class="stat-card"><div class="n">45m</div><div class="t">Average setup time</div></div>
+      <div class="stat-card"><div class="n">98%</div><div class="t">Clients who rebook or refer</div></div>
+      <div class="stat-card"><div class="n">0</div><div class="t">Cleanup left to you</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="pad">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Kind words</span>
+      <h2>The line at the booth said it all.</h2>
+    </div>
+    <div class="quotes">
+      <div class="quote-card">
+        <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+        <p>"The 360 booth was the talk of our reception. Our attendant kept the line moving and somehow got my grandparents to dance on the platform."</p>
+        <div class="quote-who">
+          <div class="avatar">MR</div>
+          <div><div class="nm">Mara & Reyes</div><div class="rl">Wedding · Riverside Hall</div></div>
+        </div>
+      </div>
+      <div class="quote-card">
+        <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+        <p>"We branded the Neon Lounge with our logo for a product launch. Hundreds of shareable prints walked out the door — best marketing spend of the quarter."</p>
+        <div class="quote-who">
+          <div class="avatar">JT</div>
+          <div><div class="nm">Jordan Tan</div><div class="rl">Events Lead · Northwind Co.</div></div>
+        </div>
+      </div>
+      <div class="quote-card">
+        <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+        <p>"From the proof to the prints, everything was effortless. The gallery hit my inbox before I'd even had coffee. I've already booked them again."</p>
+        <div class="quote-who">
+          <div class="avatar">PL</div>
+          <div><div class="nm">Priya L.</div><div class="rl">40th Birthday · The Loft</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="packages pad" id="packages">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Packages</span>
+      <h2>Straightforward pricing. Everything included.</h2>
+      <p>No surprise fees, no hidden print charges. Travel within the metro is always on us.</p>
+    </div>
+    <div class="pkg-grid">
+      <div class="pkg">
+        <span class="tier">The Social</span>
+        <div class="price">$595<span> / 2 hours</span></div>
+        <p class="desc">Perfect for intimate parties and showers.</p>
+        <ul>
+          <li><i data-lucide="check"></i> One booth of your choice</li>
+          <li><i data-lucide="check"></i> Unlimited prints on site</li>
+          <li><i data-lucide="check"></i> On-site attendant</li>
+          <li><i data-lucide="check"></i> Standard prop kit</li>
+          <li><i data-lucide="check"></i> Digital gallery</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">Choose Social</a>
+      </div>
+      <div class="pkg feature">
+        <span class="pkg-flag">Most booked</span>
+        <span class="tier">The Celebration</span>
+        <div class="price">$895<span> / 4 hours</span></div>
+        <p class="desc">Our sweet spot for weddings & big nights.</p>
+        <ul>
+          <li><i data-lucide="check"></i> Any booth + custom backdrop</li>
+          <li><i data-lucide="check"></i> Unlimited prints + GIFs</li>
+          <li><i data-lucide="check"></i> Dedicated attendant</li>
+          <li><i data-lucide="check"></i> Custom print layout & props</li>
+          <li><i data-lucide="check"></i> Same-night digital gallery</li>
+        </ul>
+        <a href="#contact" class="btn">Choose Celebration</a>
+      </div>
+      <div class="pkg">
+        <span class="tier">The Production</span>
+        <div class="price">Custom<span> / full day</span></div>
+        <p class="desc">For brand activations & multi-booth events.</p>
+        <ul>
+          <li><i data-lucide="check"></i> Multiple booths & crew</li>
+          <li><i data-lucide="check"></i> Full brand customisation</li>
+          <li><i data-lucide="check"></i> Custom neon signage</li>
+          <li><i data-lucide="check"></i> Data capture & analytics</li>
+          <li><i data-lucide="check"></i> Dedicated event manager</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">Request a quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="cta-glow"></div>
+  <div class="wrap">
+    <span class="eyebrow" style="color:#F8B7A5">Let's make it loud</span>
+    <h2>Your date is <em>waiting.</em></h2>
+    <p>Tell us when and where. We'll check availability, send a quick quote, and start designing your set the same day.</p>
+    <div class="cta-actions">
+      <a href="mailto:hello@blessstudio.co" class="btn">Email the studio <i data-lucide="mail"></i></a>
+      <a href="tel:+10000000000" class="btn btn-ghost">Call (000) 000-0000 <i data-lucide="phone"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#" class="logo">Bless<span class="dot">.</span>Studio <small>Production</small></a>
+        <p class="foot-about">Premium event booth rentals, designed and run by real people. Capturing the best ten feet of every party since 2016.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Booths</h4>
+        <a href="#booths">Open-Air</a>
+        <a href="#booths">Vintage Roamer</a>
+        <a href="#booths">360 Spinner</a>
+        <a href="#booths">Neon Lounge</a>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <a href="#process">How it works</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#packages">Packages</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="foot-col">
+        <h4>Get in touch</h4>
+        <a href="mailto:hello@blessstudio.co">hello@blessstudio.co</a>
+        <a href="tel:+10000000000">(000) 000-0000</a>
+        <a href="#">Mon–Sat · 9am–7pm</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 Bless Studio Production. All rights reserved.</p>
+      <div class="socials">
+        <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+        <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+        <a href="#" aria-label="TikTok"><i data-lucide="music-2"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+</script>
+</body>
+</html>

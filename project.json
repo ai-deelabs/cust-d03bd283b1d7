@@ -1,0 +1,26 @@
+{
+  "slug": "cust-d03bd283b1d7",
+  "brand_dna": "Bless Studio Production is an event booth rental business. The customer has not specified desired look and feel yet, or any special requests.",
+  "variant_count": 3,
+  "client_id": null,
+  "tags": [],
+  "generated_at": "2026-06-02T05:17:50Z",
+  "prompt_template": "variant.md",
+  "actions": [
+    {
+      "type": "generate",
+      "at": "2026-06-02T05:20:53Z",
+      "variants": {
+        "v1": {
+          "size_bytes": 27072
+        },
+        "v2": {
+          "size_bytes": 32126
+        },
+        "v3": {
+          "size_bytes": 22918
+        }
+      }
+    }
+  ]
+}

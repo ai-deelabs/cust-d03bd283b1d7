@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bless Studio Production — Event Booth Rental</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.460.0"></script>
+<style>
+  :root{
+    --paper:#f3efe7;
+    --paper-2:#ebe5d9;
+    --ink:#191712;
+    --ink-soft:#54504a;
+    --clay:#bf4d2e;
+    --clay-deep:#9a3c22;
+    --line:#d7cfbf;
+    --serif:"Fraunces",Georgia,serif;
+    --sans:"Inter",system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{display:block;width:100%;height:100%;object-fit:cover}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+  .serif{font-family:var(--serif)}
+  .eyebrow{
+    font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+    font-weight:500;color:var(--clay-deep);
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--clay)}
+
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(243,239,231,.82);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .logo{display:flex;flex-direction:column;line-height:1}
+  .logo b{font-family:var(--serif);font-weight:500;font-size:22px;letter-spacing:-.01em}
+  .logo span{font-size:9.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--ink-soft);margin-top:4px}
+  .nav-links{display:flex;gap:38px;align-items:center}
+  .nav-links a{font-size:13.5px;color:var(--ink-soft);transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    font-size:13.5px;font-weight:500;
+    padding:13px 24px;border-radius:2px;
+    transition:.25s;cursor:pointer;border:1px solid var(--ink);
+  }
+  .btn-dark{background:var(--ink);color:var(--paper)}
+  .btn-dark:hover{background:var(--clay);border-color:var(--clay)}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper)}
+  .btn i{width:16px;height:16px}
+  .nav-cta{display:flex}
+  .burger{display:none;background:none;border:none;cursor:pointer;color:var(--ink)}
+
+  /* HERO */
+  .hero{padding:76px 0 30px;position:relative}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:end}
+  .hero h1{
+    font-family:var(--serif);font-weight:300;
+    font-size:clamp(46px,7vw,98px);line-height:.96;
+    letter-spacing:-.025em;margin:26px 0 0;
+  }
+  .hero h1 em{font-style:italic;color:var(--clay)}
+  .hero-lead{
+    max-width:430px;margin-top:30px;font-size:17px;color:var(--ink-soft);
+  }
+  .hero-actions{display:flex;gap:16px;margin-top:36px;flex-wrap:wrap}
+  .hero-figure{position:relative;aspect-ratio:4/5;border-radius:3px;overflow:hidden}
+  .hero-figure::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
+  .hero-tag{
+    position:absolute;left:18px;bottom:18px;z-index:2;
+    background:var(--paper);padding:11px 16px;border-radius:2px;
+    font-size:12px;letter-spacing:.04em;display:flex;align-items:center;gap:9px;
+  }
+  .hero-tag i{width:15px;height:15px;color:var(--clay)}
+  .hero-meta{
+    display:flex;gap:8px;flex-direction:column;align-items:flex-start;
+  }
+  .index{font-size:12px;color:var(--ink-soft);letter-spacing:.2em}
+
+  /* MARQUEE */
+  .marquee{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    margin-top:64px;padding:22px 0;overflow:hidden;white-space:nowrap;
+  }
+  .marquee-track{display:inline-flex;gap:54px;animation:scroll 28s linear infinite;will-change:transform}
+  .marquee-track span{
+    font-family:var(--serif);font-style:italic;font-size:26px;color:var(--ink);
+    display:inline-flex;align-items:center;gap:54px;opacity:.85;
+  }
+  .marquee-track span::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--clay)}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  /* SECTION SHARED */
+  section{position:relative}
+  .sec-head{max-width:680px;margin-bottom:54px}
+  .sec-head h2{
+    font-family:var(--serif);font-weight:300;font-size:clamp(32px,4.4vw,54px);
+    line-height:1.05;letter-spacing:-.02em;margin-top:18px;
+  }
+  .pad{padding:108px 0}
+
+  /* SERVICES */
+  .services{background:var(--paper-2)}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  .svc{background:var(--paper-2);padding:38px 32px 44px;transition:.3s;position:relative}
+  .svc:hover{background:var(--paper)}
+  .svc-num{font-size:12px;color:var(--clay-deep);letter-spacing:.2em;font-weight:500}
+  .svc i{width:30px;height:30px;stroke-width:1.4;color:var(--ink);margin:26px 0 20px}
+  .svc h3{font-family:var(--serif);font-weight:400;font-size:23px;margin-bottom:12px}
+  .svc p{font-size:14.5px;color:var(--ink-soft)}
+
+  /* SHOWCASE / split */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .split-img{aspect-ratio:5/6;border-radius:3px;overflow:hidden;position:relative}
+  .stat-row{display:flex;gap:40px;margin-top:38px;flex-wrap:wrap}
+  .stat b{font-family:var(--serif);font-weight:300;font-size:46px;display:block;line-height:1;letter-spacing:-.02em}
+  .stat span{font-size:13px;color:var(--ink-soft);letter-spacing:.04em}
+  .lead-p{font-size:16.5px;color:var(--ink-soft);max-width:480px}
+  .lead-p+.lead-p{margin-top:18px}
+
+  /* PROCESS */
+  .process{background:var(--ink);color:var(--paper)}
+  .process .eyebrow{color:#e89677}
+  .process .eyebrow::before{background:#e89677}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;margin-top:14px}
+  .step{border-top:1px solid rgba(255,255,255,.18);padding-top:22px}
+  .step b{font-family:var(--serif);font-style:italic;font-weight:300;font-size:40px;color:#e89677;display:block;line-height:1}
+  .step h4{font-size:17px;font-weight:500;margin:18px 0 9px}
+  .step p{font-size:14px;color:#b9b3a8}
+
+  /* GALLERY */
+  .gal-grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:150px;gap:14px}
+  .gal-grid figure{border-radius:3px;overflow:hidden;position:relative}
+  .gal-grid figure::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(0,0,0,.07)}
+  .gal-grid img{transition:transform .9s cubic-bezier(.16,1,.3,1)}
+  .gal-grid figure:hover img{transform:scale(1.06)}
+  .g1{grid-column:span 4;grid-row:span 2}
+  .g2{grid-column:span 2;grid-row:span 2}
+  .g3{grid-column:span 2;grid-row:span 2}
+  .g4{grid-column:span 2;grid-row:span 2}
+  .g5{grid-column:span 2;grid-row:span 2}
+  .cap{position:absolute;left:14px;bottom:14px;z-index:2;background:var(--paper);font-size:11.5px;padding:7px 12px;border-radius:2px;letter-spacing:.05em}
+
+  /* QUOTE */
+  .quote{text-align:center;max-width:880px;margin:0 auto}
+  .quote p{font-family:var(--serif);font-weight:300;font-size:clamp(26px,3.6vw,42px);line-height:1.28;letter-spacing:-.015em}
+  .quote p em{font-style:italic;color:var(--clay)}
+  .quote .by{margin-top:30px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+
+  /* CTA */
+  .cta{position:relative;overflow:hidden;border-radius:4px;color:var(--paper)}
+  .cta-bg{position:absolute;inset:0}
+  .cta-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(25,23,18,.92),rgba(154,60,34,.72))}
+  .cta-inner{position:relative;z-index:2;padding:96px 56px;text-align:center}
+  .cta h2{font-family:var(--serif);font-weight:300;font-size:clamp(34px,5vw,62px);line-height:1.02;letter-spacing:-.02em}
+  .cta h2 em{font-style:italic}
+  .cta p{max-width:480px;margin:22px auto 0;color:#efe7dd;font-size:16px}
+  .cta-actions{display:flex;gap:16px;justify-content:center;margin-top:38px;flex-wrap:wrap}
+  .btn-paper{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+  .btn-paper:hover{background:transparent;color:var(--paper)}
+  .btn-line{background:transparent;color:var(--paper);border-color:rgba(255,255,255,.55)}
+  .btn-line:hover{background:rgba(255,255,255,.12)}
+
+  /* FOOTER */
+  footer{padding:72px 0 40px;border-top:1px solid var(--line)}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px}
+  .foot-col h5{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px}
+  .foot-col a,.foot-col p{display:block;font-size:14px;color:var(--ink-soft);margin-bottom:11px;transition:color .2s}
+  .foot-col a:hover{color:var(--clay-deep)}
+  .foot-brand b{font-family:var(--serif);font-weight:500;font-size:26px}
+  .foot-brand p{max-width:300px;margin-top:14px;font-size:14px}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:56px;padding-top:26px;border-top:1px solid var(--line);flex-wrap:wrap;gap:16px}
+  .foot-bottom span{font-size:12.5px;color:var(--ink-soft)}
+  .socials{display:flex;gap:14px}
+  .socials a{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;transition:.25s}
+  .socials a:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+  .socials i{width:16px;height:16px}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:40px}
+    .hero-figure{aspect-ratio:16/11;max-height:420px}
+    .split{grid-template-columns:1fr;gap:36px}
+    .svc-grid{grid-template-columns:1fr 1fr}
+    .steps{grid-template-columns:1fr 1fr;gap:30px}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .gal-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px}
+    .g1,.g2,.g3,.g4,.g5{grid-column:span 1;grid-row:span 1}
+    .g1{grid-column:span 2;grid-row:span 2}
+  }
+  @media(max-width:640px){
+    .wrap{padding:0 20px}
+    .nav-links{display:none}
+    .nav-cta{display:none}
+    .burger{display:block}
+    .pad{padding:72px 0}
+    .svc-grid{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+    .cta-inner{padding:64px 26px}
+    .foot-grid{grid-template-columns:1fr}
+    .hero-actions .btn{flex:1;justify-content:center}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="#top" class="logo">
+        <b>Bless Studio</b>
+        <span>Production</span>
+      </a>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#process">Process</a>
+        <a href="#studio">Studio</a>
+      </div>
+      <div class="nav-cta">
+        <a href="#contact" class="btn btn-dark">Start a project <i data-lucide="arrow-up-right"></i></a>
+      </div>
+      <button class="burger" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')"><i data-lucide="menu"></i></button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="reveal">
+          <span class="eyebrow">Event Booth Rental &amp; Build</span>
+          <h1 class="serif">Booths that<br><em>hold</em> a room.</h1>
+          <p class="hero-lead">We design, build and run exhibition booths for brands that refuse to blend in. From a single counter to a full hall presence — rented, delivered, and dismantled by one studio.</p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-dark">Request a quote <i data-lucide="arrow-right"></i></a>
+            <a href="#work" class="btn btn-ghost">See our work</a>
+          </div>
+        </div>
+        <div class="reveal hero-meta">
+          <div class="hero-figure">
+            <img src="https://images.unsplash.com/photo-1761195689615-9469b65dac01?w=900&h=1125&fit=crop" alt="Visitors interacting with a branded exhibition booth">
+            <div class="hero-tag"><i data-lucide="sparkles"></i> Modular &amp; reusable systems</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>Trade Shows</span><span>Product Launches</span><span>Pop-Ups</span><span>Conferences</span><span>Brand Activations</span>
+        <span>Trade Shows</span><span>Product Launches</span><span>Pop-Ups</span><span>Conferences</span><span>Brand Activations</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services pad" id="services">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">What we rent &amp; build</span>
+        <h2 class="serif">One studio for the whole footprint — structure, story and staff.</h2>
+      </div>
+      <div class="svc-grid reveal">
+        <div class="svc">
+          <div class="svc-num">01</div>
+          <i data-lucide="layout-grid"></i>
+          <h3 class="serif">Modular Booth Systems</h3>
+          <p>Reconfigurable aluminium frames, walls and counters that scale from 9m² to full island stands — and travel show to show.</p>
+        </div>
+        <div class="svc">
+          <div class="svc-num">02</div>
+          <i data-lucide="pen-tool"></i>
+          <h3 class="serif">Custom Design &amp; Fabrication</h3>
+          <p>Bespoke architecture when the standard kit won't do. Concept, render, and a workshop build signed off before the doors open.</p>
+        </div>
+        <div class="svc">
+          <div class="svc-num">03</div>
+          <i data-lucide="lightbulb"></i>
+          <h3 class="serif">Lighting &amp; AV</h3>
+          <p>Screens, sound, and lighting rigs tuned to the room so your booth reads clearly across a crowded floor.</p>
+        </div>
+        <div class="svc">
+          <div class="svc-num">04</div>
+          <i data-lucide="truck"></i>
+          <h3 class="serif">Logistics &amp; Install</h3>
+          <p>Delivery, on-site assembly, overnight tweaks and full teardown. You arrive to a finished stand, you leave to an empty floor.</p>
+        </div>
+        <div class="svc">
+          <div class="svc-num">05</div>
+          <i data-lucide="armchair"></i>
+          <h3 class="serif">Furniture &amp; Props</h3>
+          <p>A curated rental library of seating, plinths, greenery and counters — picked to match the booth, not fight it.</p>
+        </div>
+        <div class="svc">
+          <div class="svc-num">06</div>
+          <i data-lucide="users"></i>
+          <h3 class="serif">On-Site Crew</h3>
+          <p>Hosts, technicians and a stand manager for the run of the show, so your team can focus on the visitors.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOWCASE SPLIT -->
+  <section class="pad" id="studio">
+    <div class="wrap">
+      <div class="split">
+        <div class="reveal">
+          <span class="eyebrow">The studio</span>
+          <h2 class="serif" style="font-family:var(--serif);font-weight:300;font-size:clamp(30px,4vw,48px);line-height:1.06;letter-spacing:-.02em;margin:18px 0 24px">Built in our workshop, proven on the floor.</h2>
+          <p class="lead-p">Bless Studio Production keeps design, fabrication and logistics under one roof. That means the people who draw your booth are the people who weld it, light it, and stand beside it when the show opens.</p>
+          <p class="lead-p">We rent rather than waste — modular systems are stored, refreshed and re-deployed, so a great stand costs less the second time you show.</p>
+          <div class="stat-row">
+            <div class="stat"><b>480+</b><span>Booths delivered</span></div>
+            <div class="stat"><b>14</b><span>Years on the floor</span></div>
+            <div class="stat"><b>30+</b><span>Cities served</span></div>
+          </div>
+        </div>
+        <div class="reveal split-img">
+          <img src="https://images.unsplash.com/photo-1762028892701-692dc360db08?w=800&h=960&fit=crop" alt="Presenter showing equipment at a trade show booth">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process pad" id="process">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">How a stand comes together</span>
+        <h2 class="serif">Four moves from brief to teardown.</h2>
+      </div>
+      <div class="steps reveal">
+        <div class="step">
+          <b>01</b>
+          <h4>Brief &amp; concept</h4>
+          <p>We learn your goals, the venue rules and the budget, then return a layout and visual you can sign off.</p>
+        </div>
+        <div class="step">
+          <b>02</b>
+          <h4>Build &amp; fit-out</h4>
+          <p>Frames cut, graphics printed, lighting and AV pre-rigged and tested in our workshop before they ship.</p>
+        </div>
+        <div class="step">
+          <b>03</b>
+          <h4>Install on-site</h4>
+          <p>Our crew assembles overnight and hands you a finished, powered, dressed booth ready for visitors.</p>
+        </div>
+        <div class="step">
+          <b>04</b>
+          <h4>Run &amp; strike</h4>
+          <p>Support through the show, then a clean teardown and removal — the floor is empty before you've left.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="pad" id="work">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Selected work</span>
+        <h2 class="serif">A floor full of first impressions.</h2>
+      </div>
+      <div class="gal-grid reveal">
+        <figure class="g1">
+          <img src="https://images.unsplash.com/photo-1711390811443-ae5a33144f7d?w=900&h=600&fit=crop" alt="Crowd gathered around an exhibition booth">
+          <span class="cap">Island stand · Tech expo</span>
+        </figure>
+        <figure class="g2">
+          <img src="https://images.unsplash.com/photo-1711390811937-1b061eaf28ea?w=500&h=600&fit=crop" alt="People at a busy trade show stand">
+          <span class="cap">Open counter · Trade fair</span>
+        </figure>
+        <figure class="g3">
+          <img src="https://images.unsplash.com/photo-1559223669-d7bb31d71f26?w=500&h=600&fit=crop" alt="Seating arranged inside an event space">
+          <span class="cap">Lounge zone · Conference</span>
+        </figure>
+        <figure class="g4">
+          <img src="https://images.unsplash.com/photo-1764512680324-048f158cab2b?w=500&h=600&fit=crop" alt="Lit product display cases in a showroom">
+          <span class="cap">Display cases · Launch</span>
+        </figure>
+        <figure class="g5">
+          <img src="https://images.unsplash.com/photo-1778876088394-554203c86d65?w=500&h=600&fit=crop" alt="Attendees in a large conference hall">
+          <span class="cap">Main hall · Summit</span>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="pad" style="padding-top:40px">
+    <div class="wrap">
+      <div class="quote reveal">
+        <p class="serif">"They didn't just hand us a booth — they handed us the <em>busiest corner</em> of the entire hall, and then took it all away while we slept."</p>
+        <div class="by">Marketing Lead · Regional Trade Expo</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="pad" id="contact" style="padding-top:0">
+    <div class="wrap">
+      <div class="cta reveal">
+        <div class="cta-bg">
+          <img src="https://images.unsplash.com/photo-1762968269894-1d7e1ce8894e?w=1240&h=620&fit=crop" alt="Speaker on stage before an event audience">
+        </div>
+        <div class="cta-inner">
+          <span class="eyebrow" style="color:#f0c4b3;justify-content:center">Let's build your stand</span>
+          <h2 class="serif">Tell us the show.<br>We'll bring the <em>booth.</em></h2>
+          <p>Share your venue, dates and footprint and we'll come back with a concept and a transparent rental quote — usually within two working days.</p>
+          <div class="cta-actions">
+            <a href="mailto:hello@blessstudio.production" class="btn btn-paper">Request a quote <i data-lucide="arrow-right"></i></a>
+            <a href="tel:+10000000000" class="btn btn-line"><i data-lucide="phone"></i> Book a call</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col foot-brand">
+        <b class="serif">Bless Studio</b>
+        <p>Event booth rental, design and build — kept under one roof so the floor always looks like you meant it.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Studio</h5>
+        <a href="#services">Services</a>
+        <a href="#work">Selected work</a>
+        <a href="#process">Process</a>
+        <a href="#studio">About us</a>
+      </div>
+      <div class="foot-col">
+        <h5>Contact</h5>
+        <a href="mailto:hello@blessstudio.production">hello@blessstudio.production</a>
+        <a href="tel:+10000000000">+1 (000) 000-0000</a>
+        <p>Mon–Fri · 9am–6pm</p>
+      </div>
+      <div class="foot-col">
+        <h5>Visit</h5>
+        <p>Unit 7, Maker's Yard</p>
+        <p>Exhibition District</p>
+        <a href="#contact">Get directions</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Bless Studio Production. All rights reserved.</span>
+      <div class="socials">
+        <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+        <a href="#" aria-label="Email"><i data-lucide="mail"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // mobile menu toggle styling
+  const links = document.querySelector('.nav-links');
+  const style = document.createElement('style');
+  style.textContent = '.nav-links.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;gap:0;background:var(--paper);border-bottom:1px solid var(--line);padding:8px 20px 18px}.nav-links.open a{padding:14px 0;border-bottom:1px solid var(--line)}';
+  document.head.appendChild(style);
+</script>
+</body>
+</html>
