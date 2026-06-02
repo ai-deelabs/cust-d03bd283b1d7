@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bless Studio Production — Booth Rentals for Unforgettable Nights</title>
+<title data-lang-th="Bless Studio Production — บูธถ่ายภาพให้เช่า เพื่อค่ำคืนที่ไม่มีวันลืม" data-lang-en="Bless Studio Production — Booth Rentals for Unforgettable Nights">Bless Studio Production — บูธถ่ายภาพให้เช่า เพื่อค่ำคืนที่ไม่มีวันลืม</title>
+<meta name="description" data-lang-th="บริการบูธถ่ายภาพระดับพรีเมียมให้เช่าสำหรับงานแต่งงาน งานเปิดตัวแบรนด์ และงานฉลองครั้งสำคัญ พร้อมเจ้าหน้าที่ดูแลและพิมพ์ภาพไม่จำกัด" data-lang-en="Premium photo booth rentals for weddings, brand launches and milestone parties — with a trained attendant and unlimited prints." content="บริการบูธถ่ายภาพระดับพรีเมียมให้เช่าสำหรับงานแต่งงาน งานเปิดตัวแบรนด์ และงานฉลองครั้งสำคัญ พร้อมเจ้าหน้าที่ดูแลและพิมพ์ภาพไม่จำกัด">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Noto+Serif+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@0.460.0"></script>
 <style>
   :root{
@@ -30,6 +32,8 @@
     line-height:1.65;
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
+    word-break:break-word;
+    overflow-wrap:break-word;
   }
   h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:500;line-height:1.05;letter-spacing:-0.01em}
   a{color:inherit;text-decoration:none}
@@ -48,6 +52,16 @@
   }
   .eyebrow::before{content:"";width:26px;height:1px;background:var(--punch)}
 
+  /* THAI TYPOGRAPHY */
+  body.lang-th{font-family:'Noto Sans Thai','Sukhumvit Set',sans-serif;letter-spacing:0}
+  body.lang-th h1,body.lang-th h2,body.lang-th h3,body.lang-th h4,
+  body.lang-th .big-quote,body.lang-th .price,body.lang-th .quote-card p,
+  body.lang-th .hero-badge p{
+    font-family:'Noto Serif Thai','Noto Sans Thai',serif;
+    letter-spacing:0;line-height:1.35;
+  }
+  body.lang-th .eyebrow{letter-spacing:0.12em}
+
   /* NAV */
   nav{
     position:sticky;top:0;z-index:50;
@@ -62,6 +76,7 @@
   .nav-links{display:flex;gap:38px;align-items:center}
   .nav-links a{font-size:14px;font-weight:500;color:var(--ink-soft);transition:color .2s}
   .nav-links a:hover{color:var(--ink)}
+  .nav-right{display:flex;align-items:center;gap:16px}
   .btn{
     display:inline-flex;align-items:center;gap:9px;
     font-size:14px;font-weight:600;
@@ -75,6 +90,19 @@
   .btn-ghost:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
   .nav-cta{display:inline-flex}
   .burger{display:none;background:none;border:none;cursor:pointer;color:var(--ink)}
+
+  /* LANG TOGGLE */
+  .lang-toggle{
+    display:inline-flex;align-items:center;
+    border:1px solid var(--line);border-radius:100px;
+    overflow:hidden;background:var(--paper);cursor:pointer;padding:0;
+    font-family:'Inter',sans-serif;
+  }
+  .lang-toggle .lang-opt{
+    font-size:12px;font-weight:600;letter-spacing:0.06em;
+    padding:7px 12px;color:var(--ink-soft);transition:all .2s;line-height:1;
+  }
+  .lang-toggle .lang-opt.active{background:var(--ink);color:var(--paper)}
 
   /* HERO */
   .hero{padding:72px 0 40px;position:relative}
@@ -107,6 +135,7 @@
   }
   .marquee-track{display:flex;gap:54px;white-space:nowrap;animation:scroll 32s linear infinite;width:max-content}
   .marquee-item{display:inline-flex;align-items:center;gap:14px;font-family:'Fraunces';font-size:24px;font-style:italic;color:var(--ink)}
+  body.lang-th .marquee-item{font-family:'Noto Serif Thai',serif;font-style:normal}
   .marquee-item i{width:18px;height:18px;color:var(--punch)}
   @keyframes scroll{to{transform:translateX(-50%)}}
 
@@ -124,7 +153,8 @@
   .statement .eyebrow{color:#F8B7A5}
   .statement .eyebrow::before{background:#F8B7A5}
   .big-quote{font-family:'Fraunces';font-size:clamp(28px,3.6vw,46px);font-weight:400;line-height:1.22;letter-spacing:-0.01em}
-  .big-quote span{color:var(--punch);font-style:italic}
+  .big-quote .hl{color:var(--punch);font-style:italic}
+  body.lang-th .big-quote .hl{font-style:normal}
   .statement-side{font-size:15.5px;color:#C9C0B8;line-height:1.7}
   .statement-side p+p{margin-top:18px}
 
@@ -156,6 +186,7 @@
   .step{padding:36px 30px 36px 0;border-top:2px solid var(--ink)}
   .step:not(:last-child){padding-right:30px}
   .step .s-no{font-family:'Fraunces';font-style:italic;font-size:15px;color:var(--punch);font-weight:500}
+  body.lang-th .step .s-no{font-family:'Noto Serif Thai',serif;font-style:normal}
   .step h3{font-size:24px;margin:14px 0 10px}
   .step p{font-size:14.5px;color:var(--ink-soft)}
   .step i{width:22px;height:22px;color:var(--ink);margin-top:18px}
@@ -171,6 +202,7 @@
     position:absolute;left:14px;bottom:12px;color:#fff;font-family:'Fraunces';font-style:italic;
     font-size:16px;text-shadow:0 2px 12px rgba(0,0,0,0.5);
   }
+  body.lang-th .gallery figcaption{font-family:'Noto Serif Thai',serif;font-style:normal}
 
   /* WHY / STATS BAND */
   .why{background:var(--punch);color:var(--paper)}
@@ -207,6 +239,9 @@
   .pkg.feature .tier{color:#F8B7A5}
   .pkg .price{font-family:'Fraunces';font-size:46px;font-weight:600;margin:16px 0 4px;line-height:1}
   .pkg .price span{font-family:'Inter';font-size:15px;font-weight:500;color:var(--ink-soft)}
+  .pkg .price span.price-cur{font-family:'Fraunces';font-size:46px;font-weight:600;color:inherit}
+  body.lang-th .pkg .price span.price-cur{font-family:'Noto Serif Thai',serif}
+  body.lang-th .pkg .price span{font-family:'Noto Sans Thai',sans-serif}
   .pkg.feature .price span{color:#C9C0B8}
   .pkg .desc{font-size:14px;color:var(--ink-soft);margin-bottom:24px}
   .pkg.feature .desc{color:#C9C0B8}
@@ -236,6 +271,7 @@
   footer .logo{font-size:26px;margin-bottom:16px}
   .foot-about{font-size:14.5px;color:var(--ink-soft);max-width:300px}
   .foot-col h4{font-family:'Inter';font-size:12px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink);margin-bottom:18px}
+  body.lang-th .foot-col h4{font-family:'Noto Sans Thai',sans-serif}
   .foot-col a{display:block;font-size:14.5px;color:var(--ink-soft);padding:6px 0;transition:color .2s}
   .foot-col a:hover{color:var(--punch)}
   .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;flex-wrap:wrap;gap:16px}
@@ -280,14 +316,20 @@
   <div class="wrap nav-inner">
     <a href="#" class="logo">Bless<span class="dot">.</span>Studio <small>Production</small></a>
     <div class="nav-links">
-      <a href="#booths">Booths</a>
-      <a href="#process">How it works</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#packages">Packages</a>
-      <a href="#contact">Contact</a>
+      <a href="#booths" data-lang-th="บูธ" data-lang-en="Booths">บูธ</a>
+      <a href="#process" data-lang-th="ขั้นตอน" data-lang-en="How it works">ขั้นตอน</a>
+      <a href="#gallery" data-lang-th="ผลงาน" data-lang-en="Gallery">ผลงาน</a>
+      <a href="#packages" data-lang-th="แพ็กเกจ" data-lang-en="Packages">แพ็กเกจ</a>
+      <a href="#contact" data-lang-th="ติดต่อ" data-lang-en="Contact">ติดต่อ</a>
     </div>
-    <a href="#contact" class="btn nav-cta">Book a date <i data-lucide="arrow-up-right"></i></a>
-    <button class="burger" aria-label="Menu"><i data-lucide="menu"></i></button>
+    <div class="nav-right">
+      <button class="lang-toggle" id="langToggle" aria-label="Switch language / สลับภาษา">
+        <span class="lang-opt" data-l="th">TH</span>
+        <span class="lang-opt" data-l="en">EN</span>
+      </button>
+      <a href="#contact" class="btn nav-cta"><span data-lang-th="จองวันงาน" data-lang-en="Book a date">จองวันงาน</span> <i data-lucide="arrow-up-right"></i></a>
+      <button class="burger" aria-label="Menu"><i data-lucide="menu"></i></button>
+    </div>
   </div>
 </nav>
 
@@ -295,33 +337,33 @@
 <header class="hero">
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow">Event Booth Rentals</span>
-      <h1>The booth your guests <em>won't</em> stop talking about.</h1>
-      <p class="hero-lede">We design, deliver and run premium photo booths for weddings, brand launches and milestone parties — so every laugh leaves with a print in hand.</p>
+      <span class="eyebrow" data-lang-th="บูธถ่ายภาพให้เช่าสำหรับงานอีเวนต์" data-lang-en="Event Booth Rentals">บูธถ่ายภาพให้เช่าสำหรับงานอีเวนต์</span>
+      <h1><span data-lang-th="บูธที่แขกของคุณจะ" data-lang-en="The booth your guests ">บูธที่แขกของคุณจะ</span><em data-lang-th="พูดถึงไม่หยุด" data-lang-en="won't">พูดถึงไม่หยุด</em><span data-lang-th="" data-lang-en=" stop talking about."></span></h1>
+      <p class="hero-lede" data-lang-th="เราออกแบบ จัดส่ง และดูแลบูธถ่ายภาพระดับพรีเมียมสำหรับงานแต่งงาน งานเปิดตัวแบรนด์ และงานฉลองครั้งสำคัญ — เพื่อให้ทุกรอยยิ้มได้กลับบ้านพร้อมภาพถ่ายในมือ" data-lang-en="We design, deliver and run premium photo booths for weddings, brand launches and milestone parties — so every laugh leaves with a print in hand.">เราออกแบบ จัดส่ง และดูแลบูธถ่ายภาพระดับพรีเมียมสำหรับงานแต่งงาน งานเปิดตัวแบรนด์ และงานฉลองครั้งสำคัญ — เพื่อให้ทุกรอยยิ้มได้กลับบ้านพร้อมภาพถ่ายในมือ</p>
       <div class="hero-actions">
-        <a href="#contact" class="btn">Check your date <i data-lucide="calendar-check"></i></a>
-        <a href="#booths" class="btn btn-ghost">Explore booths</a>
+        <a href="#contact" class="btn"><span data-lang-th="เช็กวันงานของคุณ" data-lang-en="Check your date">เช็กวันงานของคุณ</span> <i data-lucide="calendar-check"></i></a>
+        <a href="#booths" class="btn btn-ghost" data-lang-th="ดูบูธทั้งหมด" data-lang-en="Explore booths">ดูบูธทั้งหมด</a>
       </div>
       <div class="hero-meta">
         <div>
           <div class="num">900+</div>
-          <div class="lbl">Events captured since 2016</div>
+          <div class="lbl" data-lang-th="งานที่เราถ่ายมาตั้งแต่ปี 2016" data-lang-en="Events captured since 2016">งานที่เราถ่ายมาตั้งแต่ปี 2016</div>
         </div>
         <div>
           <div class="num">4.9<span style="font-size:18px;color:var(--punch)">★</span></div>
-          <div class="lbl">Average client rating</div>
+          <div class="lbl" data-lang-th="คะแนนเฉลี่ยจากลูกค้า" data-lang-en="Average client rating">คะแนนเฉลี่ยจากลูกค้า</div>
         </div>
         <div>
           <div class="num">∞</div>
-          <div class="lbl">Unlimited prints, every booking</div>
+          <div class="lbl" data-lang-th="พิมพ์ภาพไม่จำกัดทุกการจอง" data-lang-en="Unlimited prints, every booking">พิมพ์ภาพไม่จำกัดทุกการจอง</div>
         </div>
       </div>
     </div>
     <figure class="hero-figure">
       <img src="https://images.unsplash.com/photo-1746587224861-521244472226?w=900&h=1120&fit=crop" alt="Friends posing happily in a photo booth with props">
       <div class="hero-badge">
-        <div class="tag">On site in</div>
-        <p>45 min setup, zero stress</p>
+        <div class="tag" data-lang-th="พร้อมหน้างานใน" data-lang-en="On site in">พร้อมหน้างานใน</div>
+        <p data-lang-th="ติดตั้ง 45 นาที ไร้ความกังวล" data-lang-en="45 min setup, zero stress">ติดตั้ง 45 นาที ไร้ความกังวล</p>
       </div>
     </figure>
   </div>
@@ -330,18 +372,18 @@
 <!-- MARQUEE -->
 <div class="marquee">
   <div class="marquee-track">
-    <span class="marquee-item"><i data-lucide="sparkles"></i> Weddings</span>
-    <span class="marquee-item"><i data-lucide="building-2"></i> Corporate Galas</span>
-    <span class="marquee-item"><i data-lucide="cake"></i> Birthdays</span>
-    <span class="marquee-item"><i data-lucide="graduation-cap"></i> Graduations</span>
-    <span class="marquee-item"><i data-lucide="party-popper"></i> Brand Launches</span>
-    <span class="marquee-item"><i data-lucide="gift"></i> Holiday Parties</span>
-    <span class="marquee-item"><i data-lucide="sparkles"></i> Weddings</span>
-    <span class="marquee-item"><i data-lucide="building-2"></i> Corporate Galas</span>
-    <span class="marquee-item"><i data-lucide="cake"></i> Birthdays</span>
-    <span class="marquee-item"><i data-lucide="graduation-cap"></i> Graduations</span>
-    <span class="marquee-item"><i data-lucide="party-popper"></i> Brand Launches</span>
-    <span class="marquee-item"><i data-lucide="gift"></i> Holiday Parties</span>
+    <span class="marquee-item"><i data-lucide="sparkles"></i> <span data-lang-th="งานแต่งงาน" data-lang-en="Weddings">งานแต่งงาน</span></span>
+    <span class="marquee-item"><i data-lucide="building-2"></i> <span data-lang-th="งานกาลาบริษัท" data-lang-en="Corporate Galas">งานกาลาบริษัท</span></span>
+    <span class="marquee-item"><i data-lucide="cake"></i> <span data-lang-th="งานวันเกิด" data-lang-en="Birthdays">งานวันเกิด</span></span>
+    <span class="marquee-item"><i data-lucide="graduation-cap"></i> <span data-lang-th="งานรับปริญญา" data-lang-en="Graduations">งานรับปริญญา</span></span>
+    <span class="marquee-item"><i data-lucide="party-popper"></i> <span data-lang-th="งานเปิดตัวแบรนด์" data-lang-en="Brand Launches">งานเปิดตัวแบรนด์</span></span>
+    <span class="marquee-item"><i data-lucide="gift"></i> <span data-lang-th="ปาร์ตี้เทศกาล" data-lang-en="Holiday Parties">ปาร์ตี้เทศกาล</span></span>
+    <span class="marquee-item"><i data-lucide="sparkles"></i> <span data-lang-th="งานแต่งงาน" data-lang-en="Weddings">งานแต่งงาน</span></span>
+    <span class="marquee-item"><i data-lucide="building-2"></i> <span data-lang-th="งานกาลาบริษัท" data-lang-en="Corporate Galas">งานกาลาบริษัท</span></span>
+    <span class="marquee-item"><i data-lucide="cake"></i> <span data-lang-th="งานวันเกิด" data-lang-en="Birthdays">งานวันเกิด</span></span>
+    <span class="marquee-item"><i data-lucide="graduation-cap"></i> <span data-lang-th="งานรับปริญญา" data-lang-en="Graduations">งานรับปริญญา</span></span>
+    <span class="marquee-item"><i data-lucide="party-popper"></i> <span data-lang-th="งานเปิดตัวแบรนด์" data-lang-en="Brand Launches">งานเปิดตัวแบรนด์</span></span>
+    <span class="marquee-item"><i data-lucide="gift"></i> <span data-lang-th="ปาร์ตี้เทศกาล" data-lang-en="Holiday Parties">ปาร์ตี้เทศกาล</span></span>
   </div>
 </div>
 
@@ -349,13 +391,13 @@
 <section class="statement">
   <div class="wrap statement-grid">
     <div>
-      <span class="eyebrow">Our studio</span>
-      <p class="big-quote">A great booth isn't equipment in a corner. It's a <span>gathering place</span> — where strangers become a conga line and the shyest guest finally lets loose.</p>
+      <span class="eyebrow" data-lang-th="สตูดิโอของเรา" data-lang-en="Our studio">สตูดิโอของเรา</span>
+      <p class="big-quote"><span data-lang-th="บูธที่ดีไม่ใช่แค่อุปกรณ์ที่วางอยู่ตรงมุมห้อง แต่มันคือ" data-lang-en="A great booth isn't equipment in a corner. It's a ">บูธที่ดีไม่ใช่แค่อุปกรณ์ที่วางอยู่ตรงมุมห้อง แต่มันคือ</span> <span class="hl" data-lang-th="พื้นที่แห่งการรวมตัว" data-lang-en="gathering place">พื้นที่แห่งการรวมตัว</span> <span data-lang-th="— ที่คนแปลกหน้ากลายเป็นเพื่อนร่วมวง และแขกที่ขี้อายที่สุดได้ปลดปล่อยตัวเองในที่สุด" data-lang-en="— where strangers become a conga line and the shyest guest finally lets loose.">— ที่คนแปลกหน้ากลายเป็นเพื่อนร่วมวง และแขกที่ขี้อายที่สุดได้ปลดปล่อยตัวเองในที่สุด</span></p>
     </div>
     <div class="statement-side">
-      <p>Bless Studio Production started with a single open-air rig and a stubborn belief: the photo booth should be the most fun ten feet of any room. Today we build, light and staff every setup ourselves.</p>
-      <p>No vending-machine kiosks. No anonymous drop-offs. A real attendant arrives early, dials in the lighting for your venue, and keeps the line moving and the props flying all night long.</p>
-      <p>You get the prints, the digital gallery, and a room full of people who can't stop smiling. We handle everything in between.</p>
+      <p data-lang-th="Bless Studio Production เริ่มต้นจากบูธโอเพนแอร์เพียงตัวเดียว กับความเชื่อที่ไม่ยอมเปลี่ยน นั่นคือบูธถ่ายภาพควรเป็นพื้นที่ที่สนุกที่สุดในทุกงาน วันนี้เราออกแบบ จัดแสง และดูแลทุกการติดตั้งด้วยทีมงานของเราเอง" data-lang-en="Bless Studio Production started with a single open-air rig and a stubborn belief: the photo booth should be the most fun ten feet of any room. Today we build, light and staff every setup ourselves.">Bless Studio Production เริ่มต้นจากบูธโอเพนแอร์เพียงตัวเดียว กับความเชื่อที่ไม่ยอมเปลี่ยน นั่นคือบูธถ่ายภาพควรเป็นพื้นที่ที่สนุกที่สุดในทุกงาน วันนี้เราออกแบบ จัดแสง และดูแลทุกการติดตั้งด้วยทีมงานของเราเอง</p>
+      <p data-lang-th="ไม่มีตู้อัตโนมัติแบบหยอดเหรียญ ไม่มีการทิ้งอุปกรณ์ไว้แล้วจากไป เจ้าหน้าที่ตัวจริงมาถึงก่อนเวลา ปรับแสงให้เข้ากับสถานที่ของคุณ และคอยดูแลให้คิวเดินหน้าและพร็อพสนุกสนานตลอดทั้งคืน" data-lang-en="No vending-machine kiosks. No anonymous drop-offs. A real attendant arrives early, dials in the lighting for your venue, and keeps the line moving and the props flying all night long.">ไม่มีตู้อัตโนมัติแบบหยอดเหรียญ ไม่มีการทิ้งอุปกรณ์ไว้แล้วจากไป เจ้าหน้าที่ตัวจริงมาถึงก่อนเวลา ปรับแสงให้เข้ากับสถานที่ของคุณ และคอยดูแลให้คิวเดินหน้าและพร็อพสนุกสนานตลอดทั้งคืน</p>
+      <p data-lang-th="คุณจะได้ภาพพิมพ์ แกลเลอรีดิจิทัล และห้องที่เต็มไปด้วยผู้คนที่ยิ้มไม่หยุด ส่วนทุกอย่างที่เหลือ ปล่อยให้เป็นหน้าที่ของเรา" data-lang-en="You get the prints, the digital gallery, and a room full of people who can't stop smiling. We handle everything in between.">คุณจะได้ภาพพิมพ์ แกลเลอรีดิจิทัล และห้องที่เต็มไปด้วยผู้คนที่ยิ้มไม่หยุด ส่วนทุกอย่างที่เหลือ ปล่อยให้เป็นหน้าที่ของเรา</p>
     </div>
   </div>
 </section>
@@ -364,9 +406,9 @@
 <section class="pad" id="booths">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow">The lineup</span>
-      <h2>Four booths, one obsession with the perfect frame.</h2>
-      <p>Each rig is hand-built and arrives with a trained attendant, premium props and a custom print layout matched to your event.</p>
+      <span class="eyebrow" data-lang-th="ไลน์อัปของเรา" data-lang-en="The lineup">ไลน์อัปของเรา</span>
+      <h2 data-lang-th="สี่บูธ หนึ่งความหลงใหลในเฟรมที่สมบูรณ์แบบ" data-lang-en="Four booths, one obsession with the perfect frame.">สี่บูธ หนึ่งความหลงใหลในเฟรมที่สมบูรณ์แบบ</h2>
+      <p data-lang-th="ทุกบูธประกอบขึ้นด้วยมือ มาพร้อมเจ้าหน้าที่ที่ผ่านการฝึกอบรม พร็อพระดับพรีเมียม และเลย์เอาต์การพิมพ์ที่ออกแบบให้เข้ากับงานของคุณ" data-lang-en="Each rig is hand-built and arrives with a trained attendant, premium props and a custom print layout matched to your event.">ทุกบูธประกอบขึ้นด้วยมือ มาพร้อมเจ้าหน้าที่ที่ผ่านการฝึกอบรม พร็อพระดับพรีเมียม และเลย์เอาต์การพิมพ์ที่ออกแบบให้เข้ากับงานของคุณ</p>
     </div>
     <div class="booth-grid">
       <article class="booth">
@@ -375,9 +417,9 @@
           <img src="https://images.unsplash.com/photo-1647427854253-b92bb40c9330?w=720&h=520&fit=crop" alt="Studio booth with a bold backdrop and a chair">
         </div>
         <div class="booth-body">
-          <h3>The Open-Air</h3>
-          <p>An airy setup with a designer backdrop that fits eight friends in one shot. The crowd favourite, and our most-booked rig.</p>
-          <div class="booth-tags"><span class="chip">Custom backdrop</span><span class="chip">Group shots</span><span class="chip">DSLR quality</span></div>
+          <h3 data-lang-th="ดิ โอเพนแอร์" data-lang-en="The Open-Air">ดิ โอเพนแอร์</h3>
+          <p data-lang-th="บูธโปร่งโล่งพร้อมฉากหลังดีไซน์พิเศษ ที่จุเพื่อนได้ถึงแปดคนในช็อตเดียว เป็นขวัญใจมหาชนและบูธที่ถูกจองมากที่สุดของเรา" data-lang-en="An airy setup with a designer backdrop that fits eight friends in one shot. The crowd favourite, and our most-booked rig.">บูธโปร่งโล่งพร้อมฉากหลังดีไซน์พิเศษ ที่จุเพื่อนได้ถึงแปดคนในช็อตเดียว เป็นขวัญใจมหาชนและบูธที่ถูกจองมากที่สุดของเรา</p>
+          <div class="booth-tags"><span class="chip" data-lang-th="ฉากหลังสั่งทำ" data-lang-en="Custom backdrop">ฉากหลังสั่งทำ</span><span class="chip" data-lang-th="ภาพหมู่" data-lang-en="Group shots">ภาพหมู่</span><span class="chip" data-lang-th="คุณภาพระดับ DSLR" data-lang-en="DSLR quality">คุณภาพระดับ DSLR</span></div>
         </div>
       </article>
       <article class="booth">
@@ -386,9 +428,9 @@
           <img src="https://images.unsplash.com/photo-1761416351525-fa957d228535?w=720&h=520&fit=crop" alt="Vintage van with a neon photos sign">
         </div>
         <div class="booth-body">
-          <h3>The Vintage Roamer</h3>
-          <p>A restored camper that rolls right into your venue or garden. Equal parts photo booth and showpiece centrepiece.</p>
-          <div class="booth-tags"><span class="chip">Outdoor ready</span><span class="chip">Statement piece</span><span class="chip">Neon glow</span></div>
+          <h3 data-lang-th="เดอะ วินเทจ โรมเมอร์" data-lang-en="The Vintage Roamer">เดอะ วินเทจ โรมเมอร์</h3>
+          <p data-lang-th="รถแคมป์เปอร์บูรณะใหม่ที่ขับเข้าไปถึงสถานที่จัดงานหรือสวนของคุณได้เลย เป็นทั้งบูธถ่ายภาพและไฮไลต์ของงานในตัวเดียว" data-lang-en="A restored camper that rolls right into your venue or garden. Equal parts photo booth and showpiece centrepiece.">รถแคมป์เปอร์บูรณะใหม่ที่ขับเข้าไปถึงสถานที่จัดงานหรือสวนของคุณได้เลย เป็นทั้งบูธถ่ายภาพและไฮไลต์ของงานในตัวเดียว</p>
+          <div class="booth-tags"><span class="chip" data-lang-th="พร้อมลุยกลางแจ้ง" data-lang-en="Outdoor ready">พร้อมลุยกลางแจ้ง</span><span class="chip" data-lang-th="ชิ้นเด่นของงาน" data-lang-en="Statement piece">ชิ้นเด่นของงาน</span><span class="chip" data-lang-th="แสงนีออน" data-lang-en="Neon glow">แสงนีออน</span></div>
         </div>
       </article>
       <article class="booth">
@@ -397,9 +439,9 @@
           <img src="https://images.unsplash.com/photo-1763652566301-e88adc3d3d89?w=720&h=520&fit=crop" alt="Person celebrating with balloons and decorations">
         </div>
         <div class="booth-body">
-          <h3>The 360 Spinner</h3>
-          <p>Step onto the platform and the camera orbits you in slow motion. Pure social-media gold — shareable clips in seconds.</p>
-          <div class="booth-tags"><span class="chip">Slow-mo video</span><span class="chip">Instant share</span><span class="chip">Show-stopper</span></div>
+          <h3 data-lang-th="เดอะ 360 สปินเนอร์" data-lang-en="The 360 Spinner">เดอะ 360 สปินเนอร์</h3>
+          <p data-lang-th="ก้าวขึ้นแท่นแล้วกล้องจะหมุนรอบตัวคุณแบบสโลว์โมชัน คอนเทนต์โซเชียลชั้นยอด — ได้คลิปพร้อมแชร์ในไม่กี่วินาที" data-lang-en="Step onto the platform and the camera orbits you in slow motion. Pure social-media gold — shareable clips in seconds.">ก้าวขึ้นแท่นแล้วกล้องจะหมุนรอบตัวคุณแบบสโลว์โมชัน คอนเทนต์โซเชียลชั้นยอด — ได้คลิปพร้อมแชร์ในไม่กี่วินาที</p>
+          <div class="booth-tags"><span class="chip" data-lang-th="วิดีโอสโลว์โมชัน" data-lang-en="Slow-mo video">วิดีโอสโลว์โมชัน</span><span class="chip" data-lang-th="แชร์ได้ทันที" data-lang-en="Instant share">แชร์ได้ทันที</span><span class="chip" data-lang-th="เรียกความสนใจ" data-lang-en="Show-stopper">เรียกความสนใจ</span></div>
         </div>
       </article>
       <article class="booth">
@@ -408,9 +450,9 @@
           <img src="https://images.unsplash.com/photo-1761574030105-c5b4dc65a76d?w=720&h=520&fit=crop" alt="Happy birthday neon sign amidst greenery">
         </div>
         <div class="booth-body">
-          <h3>The Neon Lounge</h3>
-          <p>A glowing enclosed studio with mood lighting and a custom neon sign bearing your name, date or brand.</p>
-          <div class="booth-tags"><span class="chip">Custom neon</span><span class="chip">Cinematic light</span><span class="chip">Brandable</span></div>
+          <h3 data-lang-th="เดอะ นีออน เลานจ์" data-lang-en="The Neon Lounge">เดอะ นีออน เลานจ์</h3>
+          <p data-lang-th="สตูดิโอแบบปิดที่เรืองแสงด้วยไฟสร้างบรรยากาศ พร้อมป้ายนีออนสั่งทำที่มีชื่อ วันที่ หรือแบรนด์ของคุณ" data-lang-en="A glowing enclosed studio with mood lighting and a custom neon sign bearing your name, date or brand.">สตูดิโอแบบปิดที่เรืองแสงด้วยไฟสร้างบรรยากาศ พร้อมป้ายนีออนสั่งทำที่มีชื่อ วันที่ หรือแบรนด์ของคุณ</p>
+          <div class="booth-tags"><span class="chip" data-lang-th="นีออนสั่งทำ" data-lang-en="Custom neon">นีออนสั่งทำ</span><span class="chip" data-lang-th="แสงสไตล์ภาพยนตร์" data-lang-en="Cinematic light">แสงสไตล์ภาพยนตร์</span><span class="chip" data-lang-th="ใส่แบรนด์ได้" data-lang-en="Brandable">ใส่แบรนด์ได้</span></div>
         </div>
       </article>
     </div>
@@ -421,32 +463,32 @@
 <section class="process pad" id="process">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow">How it works</span>
-      <h2>From "we should get a booth" to a room full of prints.</h2>
+      <span class="eyebrow" data-lang-th="ขั้นตอนการทำงาน" data-lang-en="How it works">ขั้นตอนการทำงาน</span>
+      <h2 data-lang-th="จาก “เราน่าจะมีบูธสักตัว” สู่ห้องที่เต็มไปด้วยภาพพิมพ์" data-lang-en="From &quot;we should get a booth&quot; to a room full of prints.">จาก “เราน่าจะมีบูธสักตัว” สู่ห้องที่เต็มไปด้วยภาพพิมพ์</h2>
     </div>
     <div class="steps">
       <div class="step">
-        <span class="s-no">Step 01</span>
-        <h3>Lock the date</h3>
-        <p>Tell us your venue, headcount and vibe. We confirm availability and hold your date in minutes.</p>
+        <span class="s-no" data-lang-th="ขั้นที่ 01" data-lang-en="Step 01">ขั้นที่ 01</span>
+        <h3 data-lang-th="ล็อกวันงาน" data-lang-en="Lock the date">ล็อกวันงาน</h3>
+        <p data-lang-th="บอกเราเกี่ยวกับสถานที่ จำนวนแขก และบรรยากาศที่ต้องการ เรายืนยันคิวว่างและจองวันให้คุณภายในไม่กี่นาที" data-lang-en="Tell us your venue, headcount and vibe. We confirm availability and hold your date in minutes.">บอกเราเกี่ยวกับสถานที่ จำนวนแขก และบรรยากาศที่ต้องการ เรายืนยันคิวว่างและจองวันให้คุณภายในไม่กี่นาที</p>
         <i data-lucide="calendar-check"></i>
       </div>
       <div class="step">
-        <span class="s-no">Step 02</span>
-        <h3>Design the set</h3>
-        <p>We craft your print layout, backdrop and props to match your theme — and send a proof to approve.</p>
+        <span class="s-no" data-lang-th="ขั้นที่ 02" data-lang-en="Step 02">ขั้นที่ 02</span>
+        <h3 data-lang-th="ออกแบบเซ็ตงาน" data-lang-en="Design the set">ออกแบบเซ็ตงาน</h3>
+        <p data-lang-th="เราออกแบบเลย์เอาต์การพิมพ์ ฉากหลัง และพร็อพให้เข้ากับธีมของคุณ — แล้วส่งตัวอย่างให้คุณอนุมัติ" data-lang-en="We craft your print layout, backdrop and props to match your theme — and send a proof to approve.">เราออกแบบเลย์เอาต์การพิมพ์ ฉากหลัง และพร็อพให้เข้ากับธีมของคุณ — แล้วส่งตัวอย่างให้คุณอนุมัติ</p>
         <i data-lucide="palette"></i>
       </div>
       <div class="step">
-        <span class="s-no">Step 03</span>
-        <h3>We arrive early</h3>
-        <p>Your attendant sets up 45 minutes ahead, lights the booth for the room, and tests every print.</p>
+        <span class="s-no" data-lang-th="ขั้นที่ 03" data-lang-en="Step 03">ขั้นที่ 03</span>
+        <h3 data-lang-th="เรามาถึงก่อนเวลา" data-lang-en="We arrive early">เรามาถึงก่อนเวลา</h3>
+        <p data-lang-th="เจ้าหน้าที่ของคุณติดตั้งล่วงหน้า 45 นาที จัดแสงบูธให้เข้ากับห้อง และทดสอบการพิมพ์ทุกใบ" data-lang-en="Your attendant sets up 45 minutes ahead, lights the booth for the room, and tests every print.">เจ้าหน้าที่ของคุณติดตั้งล่วงหน้า 45 นาที จัดแสงบูธให้เข้ากับห้อง และทดสอบการพิมพ์ทุกใบ</p>
         <i data-lucide="truck"></i>
       </div>
       <div class="step">
-        <span class="s-no">Step 04</span>
-        <h3>Everyone smiles</h3>
-        <p>Unlimited prints all night, a private online gallery the next morning, and zero cleanup for you.</p>
+        <span class="s-no" data-lang-th="ขั้นที่ 04" data-lang-en="Step 04">ขั้นที่ 04</span>
+        <h3 data-lang-th="ทุกคนยิ้ม" data-lang-en="Everyone smiles">ทุกคนยิ้ม</h3>
+        <p data-lang-th="พิมพ์ภาพไม่จำกัดตลอดทั้งคืน แกลเลอรีออนไลน์ส่วนตัวในเช้าวันรุ่งขึ้น และคุณไม่ต้องเก็บกวาดอะไรเลย" data-lang-en="Unlimited prints all night, a private online gallery the next morning, and zero cleanup for you.">พิมพ์ภาพไม่จำกัดตลอดทั้งคืน แกลเลอรีออนไลน์ส่วนตัวในเช้าวันรุ่งขึ้น และคุณไม่ต้องเก็บกวาดอะไรเลย</p>
         <i data-lucide="party-popper"></i>
       </div>
     </div>
@@ -457,38 +499,38 @@
 <section class="pad" id="gallery">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow">In the wild</span>
-      <h2>Real nights, real grins.</h2>
-      <p>A glance at the kind of energy our booths pull out of every room.</p>
+      <span class="eyebrow" data-lang-th="บรรยากาศงานจริง" data-lang-en="In the wild">บรรยากาศงานจริง</span>
+      <h2 data-lang-th="ค่ำคืนจริง รอยยิ้มจริง" data-lang-en="Real nights, real grins.">ค่ำคืนจริง รอยยิ้มจริง</h2>
+      <p data-lang-th="ชมตัวอย่างพลังงานที่บูธของเราดึงออกมาจากทุกงาน" data-lang-en="A glance at the kind of energy our booths pull out of every room.">ชมตัวอย่างพลังงานที่บูธของเราดึงออกมาจากทุกงาน</p>
     </div>
     <div class="gallery">
       <figure class="g-tall">
         <img src="https://images.unsplash.com/photo-1513906029980-32d13afe6d8c?w=600&h=820&fit=crop" alt="Couple laughing in green grass">
-        <figcaption>Garden weddings</figcaption>
+        <figcaption data-lang-th="งานแต่งในสวน" data-lang-en="Garden weddings">งานแต่งในสวน</figcaption>
       </figure>
       <figure>
         <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=520&h=420&fit=crop" alt="People raising glasses in celebration">
-        <figcaption>Toasts</figcaption>
+        <figcaption data-lang-th="ช่วงดื่มอวยพร" data-lang-en="Toasts">ช่วงดื่มอวยพร</figcaption>
       </figure>
       <figure>
         <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=520&h=420&fit=crop" alt="People partying with confetti">
-        <figcaption>Confetti drops</figcaption>
+        <figcaption data-lang-th="โปรยกระดาษสี" data-lang-en="Confetti drops">โปรยกระดาษสี</figcaption>
       </figure>
       <figure class="g-wide">
         <img src="https://images.unsplash.com/photo-1439539698758-ba2680ecadb9?w=900&h=420&fit=crop" alt="Guests walking at a party at night">
-        <figcaption>After dark</figcaption>
+        <figcaption data-lang-th="ยามค่ำคืน" data-lang-en="After dark">ยามค่ำคืน</figcaption>
       </figure>
       <figure>
         <img src="https://images.unsplash.com/photo-1758870041148-31d28fdf34d9?w=520&h=420&fit=crop" alt="Illuminated number with balloon decorations">
-        <figcaption>Milestones</figcaption>
+        <figcaption data-lang-th="วันสำคัญ" data-lang-en="Milestones">วันสำคัญ</figcaption>
       </figure>
       <figure>
         <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?w=520&h=420&fit=crop" alt="People inside a conference event">
-        <figcaption>Corporate</figcaption>
+        <figcaption data-lang-th="งานองค์กร" data-lang-en="Corporate">งานองค์กร</figcaption>
       </figure>
       <figure class="g-wide">
         <img src="https://images.unsplash.com/photo-1653821355736-0c2598d0a63e?w=900&h=420&fit=crop" alt="Table set up for a party with candles and flowers">
-        <figcaption>Styled events</figcaption>
+        <figcaption data-lang-th="งานจัดสไตล์" data-lang-en="Styled events">งานจัดสไตล์</figcaption>
       </figure>
     </div>
   </div>
@@ -498,20 +540,20 @@
 <section class="why">
   <div class="wrap why-grid">
     <div>
-      <span class="eyebrow">Why Bless Studio</span>
-      <h2>Booked once, requested by name forever after.</h2>
+      <span class="eyebrow" data-lang-th="ทำไมต้อง Bless Studio" data-lang-en="Why Bless Studio">ทำไมต้อง Bless Studio</span>
+      <h2 data-lang-th="จองครั้งเดียว แล้วลูกค้าเรียกหาเราตลอดไป" data-lang-en="Booked once, requested by name forever after.">จองครั้งเดียว แล้วลูกค้าเรียกหาเราตลอดไป</h2>
       <ul class="why-list">
-        <li><i data-lucide="user-check"></i> A trained attendant runs every booth — never a drop-and-go kiosk.</li>
-        <li><i data-lucide="printer"></i> Unlimited, lab-grade prints in hand within ten seconds.</li>
-        <li><i data-lucide="cloud-download"></i> A private digital gallery delivered the morning after.</li>
-        <li><i data-lucide="shield-check"></i> Fully insured, with backup gear on every truck.</li>
+        <li><i data-lucide="user-check"></i> <span data-lang-th="เจ้าหน้าที่ที่ผ่านการฝึกอบรมดูแลทุกบูธ — ไม่ใช่ตู้ที่วางทิ้งไว้แล้วจากไป" data-lang-en="A trained attendant runs every booth — never a drop-and-go kiosk.">เจ้าหน้าที่ที่ผ่านการฝึกอบรมดูแลทุกบูธ — ไม่ใช่ตู้ที่วางทิ้งไว้แล้วจากไป</span></li>
+        <li><i data-lucide="printer"></i> <span data-lang-th="ภาพพิมพ์คุณภาพระดับแล็บไม่จำกัด ได้ในมือภายในสิบวินาที" data-lang-en="Unlimited, lab-grade prints in hand within ten seconds.">ภาพพิมพ์คุณภาพระดับแล็บไม่จำกัด ได้ในมือภายในสิบวินาที</span></li>
+        <li><i data-lucide="cloud-download"></i> <span data-lang-th="แกลเลอรีดิจิทัลส่วนตัวส่งให้ในเช้าวันรุ่งขึ้น" data-lang-en="A private digital gallery delivered the morning after.">แกลเลอรีดิจิทัลส่วนตัวส่งให้ในเช้าวันรุ่งขึ้น</span></li>
+        <li><i data-lucide="shield-check"></i> <span data-lang-th="มีประกันเต็มรูปแบบ พร้อมอุปกรณ์สำรองในทุกคันรถ" data-lang-en="Fully insured, with backup gear on every truck.">มีประกันเต็มรูปแบบ พร้อมอุปกรณ์สำรองในทุกคันรถ</span></li>
       </ul>
     </div>
     <div class="stat-cards">
-      <div class="stat-card"><div class="n">900+</div><div class="t">Events since 2016</div></div>
-      <div class="stat-card"><div class="n">45m</div><div class="t">Average setup time</div></div>
-      <div class="stat-card"><div class="n">98%</div><div class="t">Clients who rebook or refer</div></div>
-      <div class="stat-card"><div class="n">0</div><div class="t">Cleanup left to you</div></div>
+      <div class="stat-card"><div class="n">900+</div><div class="t" data-lang-th="งานตั้งแต่ปี 2016" data-lang-en="Events since 2016">งานตั้งแต่ปี 2016</div></div>
+      <div class="stat-card"><div class="n">45m</div><div class="t" data-lang-th="เวลาติดตั้งโดยเฉลี่ย" data-lang-en="Average setup time">เวลาติดตั้งโดยเฉลี่ย</div></div>
+      <div class="stat-card"><div class="n">98%</div><div class="t" data-lang-th="ลูกค้าที่จองซ้ำหรือบอกต่อ" data-lang-en="Clients who rebook or refer">ลูกค้าที่จองซ้ำหรือบอกต่อ</div></div>
+      <div class="stat-card"><div class="n">0</div><div class="t" data-lang-th="งานเก็บกวาดที่คุณต้องทำเอง" data-lang-en="Cleanup left to you">งานเก็บกวาดที่คุณต้องทำเอง</div></div>
     </div>
   </div>
 </section>
@@ -520,32 +562,32 @@
 <section class="pad">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow">Kind words</span>
-      <h2>The line at the booth said it all.</h2>
+      <span class="eyebrow" data-lang-th="เสียงจากลูกค้า" data-lang-en="Kind words">เสียงจากลูกค้า</span>
+      <h2 data-lang-th="คิวยาวหน้าบูธบอกทุกอย่างได้ดี" data-lang-en="The line at the booth said it all.">คิวยาวหน้าบูธบอกทุกอย่างได้ดี</h2>
     </div>
     <div class="quotes">
       <div class="quote-card">
         <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
-        <p>"The 360 booth was the talk of our reception. Our attendant kept the line moving and somehow got my grandparents to dance on the platform."</p>
+        <p data-lang-th="“บูธ 360 เป็นที่พูดถึงทั้งงานเลี้ยงของเรา เจ้าหน้าที่คอยดูแลให้คิวเดินหน้า แถมยังชวนคุณปู่คุณย่าของฉันขึ้นไปเต้นบนแท่นได้ด้วย”" data-lang-en="&quot;The 360 booth was the talk of our reception. Our attendant kept the line moving and somehow got my grandparents to dance on the platform.&quot;">“บูธ 360 เป็นที่พูดถึงทั้งงานเลี้ยงของเรา เจ้าหน้าที่คอยดูแลให้คิวเดินหน้า แถมยังชวนคุณปู่คุณย่าของฉันขึ้นไปเต้นบนแท่นได้ด้วย”</p>
         <div class="quote-who">
           <div class="avatar">MR</div>
-          <div><div class="nm">Mara & Reyes</div><div class="rl">Wedding · Riverside Hall</div></div>
+          <div><div class="nm">Mara &amp; Reyes</div><div class="rl" data-lang-th="งานแต่งงาน · Riverside Hall" data-lang-en="Wedding · Riverside Hall">งานแต่งงาน · Riverside Hall</div></div>
         </div>
       </div>
       <div class="quote-card">
         <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
-        <p>"We branded the Neon Lounge with our logo for a product launch. Hundreds of shareable prints walked out the door — best marketing spend of the quarter."</p>
+        <p data-lang-th="“เราใส่โลโก้ของเราลงบน Neon Lounge สำหรับงานเปิดตัวสินค้า มีภาพพร้อมแชร์ออกจากงานเป็นร้อยใบ — เป็นงบการตลาดที่คุ้มที่สุดของไตรมาส”" data-lang-en="&quot;We branded the Neon Lounge with our logo for a product launch. Hundreds of shareable prints walked out the door — best marketing spend of the quarter.&quot;">“เราใส่โลโก้ของเราลงบน Neon Lounge สำหรับงานเปิดตัวสินค้า มีภาพพร้อมแชร์ออกจากงานเป็นร้อยใบ — เป็นงบการตลาดที่คุ้มที่สุดของไตรมาส”</p>
         <div class="quote-who">
           <div class="avatar">JT</div>
-          <div><div class="nm">Jordan Tan</div><div class="rl">Events Lead · Northwind Co.</div></div>
+          <div><div class="nm">Jordan Tan</div><div class="rl" data-lang-th="หัวหน้าฝ่ายอีเวนต์ · Northwind Co." data-lang-en="Events Lead · Northwind Co.">หัวหน้าฝ่ายอีเวนต์ · Northwind Co.</div></div>
         </div>
       </div>
       <div class="quote-card">
         <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
-        <p>"From the proof to the prints, everything was effortless. The gallery hit my inbox before I'd even had coffee. I've already booked them again."</p>
+        <p data-lang-th="“ตั้งแต่ตัวอย่างจนถึงภาพพิมพ์ ทุกอย่างราบรื่นไปหมด แกลเลอรีส่งเข้าอีเมลก่อนที่ฉันจะได้จิบกาแฟเสียอีก และฉันก็จองพวกเขาอีกครั้งเรียบร้อยแล้ว”" data-lang-en="&quot;From the proof to the prints, everything was effortless. The gallery hit my inbox before I'd even had coffee. I've already booked them again.&quot;">“ตั้งแต่ตัวอย่างจนถึงภาพพิมพ์ ทุกอย่างราบรื่นไปหมด แกลเลอรีส่งเข้าอีเมลก่อนที่ฉันจะได้จิบกาแฟเสียอีก และฉันก็จองพวกเขาอีกครั้งเรียบร้อยแล้ว”</p>
         <div class="quote-who">
           <div class="avatar">PL</div>
-          <div><div class="nm">Priya L.</div><div class="rl">40th Birthday · The Loft</div></div>
+          <div><div class="nm">Priya L.</div><div class="rl" data-lang-th="วันเกิดครบรอบ 40 ปี · The Loft" data-lang-en="40th Birthday · The Loft">วันเกิดครบรอบ 40 ปี · The Loft</div></div>
         </div>
       </div>
     </div>
@@ -556,50 +598,50 @@
 <section class="packages pad" id="packages">
   <div class="wrap">
     <div class="sec-head">
-      <span class="eyebrow">Packages</span>
-      <h2>Straightforward pricing. Everything included.</h2>
-      <p>No surprise fees, no hidden print charges. Travel within the metro is always on us.</p>
+      <span class="eyebrow" data-lang-th="แพ็กเกจ" data-lang-en="Packages">แพ็กเกจ</span>
+      <h2 data-lang-th="ราคาตรงไปตรงมา รวมทุกอย่างครบ" data-lang-en="Straightforward pricing. Everything included.">ราคาตรงไปตรงมา รวมทุกอย่างครบ</h2>
+      <p data-lang-th="ไม่มีค่าใช้จ่ายแอบแฝง ไม่มีค่าพิมพ์ภาพซ่อนเร้น ค่าเดินทางในเขตเมืองเราออกให้เสมอ" data-lang-en="No surprise fees, no hidden print charges. Travel within the metro is always on us.">ไม่มีค่าใช้จ่ายแอบแฝง ไม่มีค่าพิมพ์ภาพซ่อนเร้น ค่าเดินทางในเขตเมืองเราออกให้เสมอ</p>
     </div>
     <div class="pkg-grid">
       <div class="pkg">
-        <span class="tier">The Social</span>
-        <div class="price">$595<span> / 2 hours</span></div>
-        <p class="desc">Perfect for intimate parties and showers.</p>
+        <span class="tier" data-lang-th="เดอะ โซเชียล" data-lang-en="The Social">เดอะ โซเชียล</span>
+        <div class="price">$595<span data-lang-th=" / 2 ชั่วโมง" data-lang-en=" / 2 hours"> / 2 ชั่วโมง</span></div>
+        <p class="desc" data-lang-th="เหมาะกับงานปาร์ตี้เล็กๆ และงานเซอร์ไพรส์" data-lang-en="Perfect for intimate parties and showers.">เหมาะกับงานปาร์ตี้เล็กๆ และงานเซอร์ไพรส์</p>
         <ul>
-          <li><i data-lucide="check"></i> One booth of your choice</li>
-          <li><i data-lucide="check"></i> Unlimited prints on site</li>
-          <li><i data-lucide="check"></i> On-site attendant</li>
-          <li><i data-lucide="check"></i> Standard prop kit</li>
-          <li><i data-lucide="check"></i> Digital gallery</li>
+          <li><i data-lucide="check"></i> <span data-lang-th="บูธหนึ่งตัวตามที่คุณเลือก" data-lang-en="One booth of your choice">บูธหนึ่งตัวตามที่คุณเลือก</span></li>
+          <li><i data-lucide="check"></i> <span data-lang-th="พิมพ์ภาพไม่จำกัดที่หน้างาน" data-lang-en="Unlimited prints on site">พิมพ์ภาพไม่จำกัดที่หน้างาน</span></li>
+          <li><i data-lucide="check"></i> <span data-lang-th="เจ้าหน้าที่ประจำหน้างาน" data-lang-en="On-site attendant">เจ้าหน้าที่ประจำหน้างาน</span></li>
+          <li><i data-lucide="check"></i> <span data-lang-th="ชุดพร็อพมาตรฐาน" data-lang-en="Standard prop kit">ชุดพร็อพมาตรฐาน</span></li>
+          <li><i data-lucide="check"></i> <span data-lang-th="แกลเลอรีดิจิทัล" data-lang-en="Digital gallery">แกลเลอรีดิจิทัล</span></li>
         </ul>
-        <a href="#contact" class="btn btn-ghost">Choose Social</a>
+        <a href="#contact" class="btn btn-ghost" data-lang-th="เลือกโซเชียล" data-lang-en="Choose Social">เลือกโซเชียล</a>
       </div>
       <div class="pkg feature">
-        <span class="pkg-flag">Most booked</span>
-        <span class="tier">The Celebration</span>
-        <div class="price">$895<span> / 4 hours</span></div>
-        <p class="desc">Our sweet spot for weddings & big nights.</p>
+        <span class="pkg-flag" data-lang-th="จองมากที่สุด" data-lang-en="Most booked">จองมากที่สุด</span>
+        <span class="tier" data-lang-th="เดอะ เซเลเบรชัน" data-lang-en="The Celebration">เดอะ เซเลเบรชัน</span>
+        <div class="price">$895<span data-lang-th=" / 4 ชั่วโมง" data-lang-en=" / 4 hours"> / 4 ชั่วโมง</span></div>
+        <p class="desc" data-lang-th="ตัวเลือกยอดนิยมสำหรับงานแต่งและค่ำคืนสำคัญ" data-lang-en="Our sweet spot for weddings &amp; big nights.">ตัวเลือกยอดนิยมสำหรับงานแต่งและค่ำคืนสำคัญ</p>
         <ul>
-          <li><i data-lucide="check"></i> Any booth + custom backdrop</li>
-          <li><i data-lucide="check"></i> Unlimited prints + GIFs</li>
-          <li><i data-lucide="check"></i> Dedicated attendant</li>
-          <li><i data-lucide="check"></i> Custom print layout & props</li>
-          <li><i data-lucide="check"></i> Same-night digital gallery</li>
+          <li><i data-lucide="check"></i> <span data-lang-th="บูธใดก็ได้ + ฉากหลังสั่งทำ" data-lang-en="Any booth + custom backdrop">บูธใดก็ได้ + ฉากหลังสั่งทำ</span></li>
+          <li><i data-lucide="check"></i> <span data-lang-th="พิมพ์ภาพไม่จำกัด + ภาพ GIF" data-lang-en="Unlimited prints + GIFs">พิมพ์ภาพไม่จำกัด + ภาพ GIF</span></li>
+          <li><i data-lucide="check"></i> <span data-lang-th="เจ้าหน้าที่ดูแลโดยเฉพาะ" data-lang-en="Dedicated attendant">เจ้าหน้าที่ดูแลโดยเฉพาะ</span></li>
+          <li><i data-lucide="check"></i> <span data-lang-th="เลย์เอาต์การพิมพ์และพร็อพสั่งทำ" data-lang-en="Custom print layout &amp; props">เลย์เอาต์การพิมพ์และพร็อพสั่งทำ</span></li>
+          <li><i data-lucide="check"></i> <span data-lang-th="แกลเลอรีดิจิทัลภายในคืนเดียวกัน" data-lang-en="Same-night digital gallery">แกลเลอรีดิจิทัลภายในคืนเดียวกัน</span></li>
         </ul>
-        <a href="#contact" class="btn">Choose Celebration</a>
+        <a href="#contact" class="btn" data-lang-th="เลือกเซเลเบรชัน" data-lang-en="Choose Celebration">เลือกเซเลเบรชัน</a>
       </div>
       <div class="pkg">
-        <span class="tier">The Production</span>
-        <div class="price">Custom<span> / full day</span></div>
-        <p class="desc">For brand activations & multi-booth events.</p>
+        <span class="tier" data-lang-th="เดอะ โปรดักชัน" data-lang-en="The Production">เดอะ โปรดักชัน</span>
+        <div class="price"><span class="price-cur" data-lang-th="กำหนดเอง" data-lang-en="Custom">กำหนดเอง</span><span data-lang-th=" / เต็มวัน" data-lang-en=" / full day"> / เต็มวัน</span></div>
+        <p class="desc" data-lang-th="สำหรับงานกระตุ้นแบรนด์และงานหลายบูธ" data-lang-en="For brand activations &amp; multi-booth events.">สำหรับงานกระตุ้นแบรนด์และงานหลายบูธ</p>
         <ul>
-          <li><i data-lucide="check"></i> Multiple booths & crew</li>
-          <li><i data-lucide="check"></i> Full brand customisation</li>
-          <li><i data-lucide="check"></i> Custom neon signage</li>
-          <li><i data-lucide="check"></i> Data capture & analytics</li>
-          <li><i data-lucide="check"></i> Dedicated event manager</li>
+          <li><i data-lucide="check"></i> <span data-lang-th="หลายบูธพร้อมทีมงาน" data-lang-en="Multiple booths &amp; crew">หลายบูธพร้อมทีมงาน</span></li>
+          <li><i data-lucide="check"></i> <span data-lang-th="ปรับแต่งแบรนด์เต็มรูปแบบ" data-lang-en="Full brand customisation">ปรับแต่งแบรนด์เต็มรูปแบบ</span></li>
+          <li><i data-lucide="check"></i> <span data-lang-th="ป้ายนีออนสั่งทำ" data-lang-en="Custom neon signage">ป้ายนีออนสั่งทำ</span></li>
+          <li><i data-lucide="check"></i> <span data-lang-th="เก็บข้อมูลและวิเคราะห์ผล" data-lang-en="Data capture &amp; analytics">เก็บข้อมูลและวิเคราะห์ผล</span></li>
+          <li><i data-lucide="check"></i> <span data-lang-th="ผู้จัดการงานโดยเฉพาะ" data-lang-en="Dedicated event manager">ผู้จัดการงานโดยเฉพาะ</span></li>
         </ul>
-        <a href="#contact" class="btn btn-ghost">Request a quote</a>
+        <a href="#contact" class="btn btn-ghost" data-lang-th="ขอใบเสนอราคา" data-lang-en="Request a quote">ขอใบเสนอราคา</a>
       </div>
     </div>
   </div>
@@ -609,12 +651,12 @@
 <section class="cta" id="contact">
   <div class="cta-glow"></div>
   <div class="wrap">
-    <span class="eyebrow" style="color:#F8B7A5">Let's make it loud</span>
-    <h2>Your date is <em>waiting.</em></h2>
-    <p>Tell us when and where. We'll check availability, send a quick quote, and start designing your set the same day.</p>
+    <span class="eyebrow" style="color:#F8B7A5" data-lang-th="มาทำให้งานนี้สนุกสุดเหวี่ยง" data-lang-en="Let's make it loud">มาทำให้งานนี้สนุกสุดเหวี่ยง</span>
+    <h2><span data-lang-th="วันงานของคุณ" data-lang-en="Your date is ">วันงานของคุณ</span><em data-lang-th="กำลังรออยู่" data-lang-en="waiting.">กำลังรออยู่</em></h2>
+    <p data-lang-th="บอกเราว่าเมื่อไหร่และที่ไหน เราจะเช็กคิวว่าง ส่งใบเสนอราคาแบบรวดเร็ว และเริ่มออกแบบเซ็ตงานของคุณภายในวันเดียวกัน" data-lang-en="Tell us when and where. We'll check availability, send a quick quote, and start designing your set the same day.">บอกเราว่าเมื่อไหร่และที่ไหน เราจะเช็กคิวว่าง ส่งใบเสนอราคาแบบรวดเร็ว และเริ่มออกแบบเซ็ตงานของคุณภายในวันเดียวกัน</p>
     <div class="cta-actions">
-      <a href="mailto:hello@blessstudio.co" class="btn">Email the studio <i data-lucide="mail"></i></a>
-      <a href="tel:+10000000000" class="btn btn-ghost">Call (000) 000-0000 <i data-lucide="phone"></i></a>
+      <a href="mailto:hello@blessstudio.co" class="btn"><span data-lang-th="อีเมลหาสตูดิโอ" data-lang-en="Email the studio">อีเมลหาสตูดิโอ</span> <i data-lucide="mail"></i></a>
+      <a href="tel:+10000000000" class="btn btn-ghost"><span data-lang-th="โทร (000) 000-0000" data-lang-en="Call (000) 000-0000">โทร (000) 000-0000</span> <i data-lucide="phone"></i></a>
     </div>
   </div>
 </section>
@@ -625,31 +667,31 @@
     <div class="foot-grid">
       <div>
         <a href="#" class="logo">Bless<span class="dot">.</span>Studio <small>Production</small></a>
-        <p class="foot-about">Premium event booth rentals, designed and run by real people. Capturing the best ten feet of every party since 2016.</p>
+        <p class="foot-about" data-lang-th="บริการบูธถ่ายภาพระดับพรีเมียมสำหรับงานอีเวนต์ ออกแบบและดูแลโดยคนจริงๆ เก็บภาพช่วงเวลาที่ดีที่สุดของทุกงานปาร์ตี้มาตั้งแต่ปี 2016" data-lang-en="Premium event booth rentals, designed and run by real people. Capturing the best ten feet of every party since 2016.">บริการบูธถ่ายภาพระดับพรีเมียมสำหรับงานอีเวนต์ ออกแบบและดูแลโดยคนจริงๆ เก็บภาพช่วงเวลาที่ดีที่สุดของทุกงานปาร์ตี้มาตั้งแต่ปี 2016</p>
       </div>
       <div class="foot-col">
-        <h4>Booths</h4>
-        <a href="#booths">Open-Air</a>
-        <a href="#booths">Vintage Roamer</a>
-        <a href="#booths">360 Spinner</a>
-        <a href="#booths">Neon Lounge</a>
+        <h4 data-lang-th="บูธ" data-lang-en="Booths">บูธ</h4>
+        <a href="#booths" data-lang-th="โอเพนแอร์" data-lang-en="Open-Air">โอเพนแอร์</a>
+        <a href="#booths" data-lang-th="วินเทจ โรมเมอร์" data-lang-en="Vintage Roamer">วินเทจ โรมเมอร์</a>
+        <a href="#booths" data-lang-th="360 สปินเนอร์" data-lang-en="360 Spinner">360 สปินเนอร์</a>
+        <a href="#booths" data-lang-th="นีออน เลานจ์" data-lang-en="Neon Lounge">นีออน เลานจ์</a>
       </div>
       <div class="foot-col">
-        <h4>Company</h4>
-        <a href="#process">How it works</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#packages">Packages</a>
-        <a href="#contact">Contact</a>
+        <h4 data-lang-th="บริษัท" data-lang-en="Company">บริษัท</h4>
+        <a href="#process" data-lang-th="ขั้นตอนการทำงาน" data-lang-en="How it works">ขั้นตอนการทำงาน</a>
+        <a href="#gallery" data-lang-th="ผลงาน" data-lang-en="Gallery">ผลงาน</a>
+        <a href="#packages" data-lang-th="แพ็กเกจ" data-lang-en="Packages">แพ็กเกจ</a>
+        <a href="#contact" data-lang-th="ติดต่อ" data-lang-en="Contact">ติดต่อ</a>
       </div>
       <div class="foot-col">
-        <h4>Get in touch</h4>
+        <h4 data-lang-th="ช่องทางติดต่อ" data-lang-en="Get in touch">ช่องทางติดต่อ</h4>
         <a href="mailto:hello@blessstudio.co">hello@blessstudio.co</a>
         <a href="tel:+10000000000">(000) 000-0000</a>
-        <a href="#">Mon–Sat · 9am–7pm</a>
+        <a href="#" data-lang-th="จันทร์–เสาร์ · 9.00–19.00 น." data-lang-en="Mon–Sat · 9am–7pm">จันทร์–เสาร์ · 9.00–19.00 น.</a>
       </div>
     </div>
     <div class="foot-bottom">
-      <p>© 2026 Bless Studio Production. All rights reserved.</p>
+      <p data-lang-th="© 2026 Bless Studio Production สงวนลิขสิทธิ์" data-lang-en="© 2026 Bless Studio Production. All rights reserved.">© 2026 Bless Studio Production สงวนลิขสิทธิ์</p>
       <div class="socials">
         <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
         <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
@@ -660,7 +702,41 @@
 </footer>
 
 <script>
-  lucide.createIcons();
+  (function(){
+    function applyLang(lang){
+      document.documentElement.lang = lang;
+      document.body.classList.toggle('lang-th', lang === 'th');
+      var nodes = document.querySelectorAll('[data-lang-' + lang + ']');
+      for (var i = 0; i < nodes.length; i++){
+        var el = nodes[i];
+        var val = el.getAttribute('data-lang-' + lang);
+        if (val === null) continue;
+        if (el.tagName === 'META') { el.setAttribute('content', val); }
+        else if (el.tagName === 'TITLE') { document.title = val; }
+        else { el.textContent = val; }
+      }
+      var opts = document.querySelectorAll('.lang-opt');
+      for (var j = 0; j < opts.length; j++){
+        opts[j].classList.toggle('active', opts[j].getAttribute('data-l') === lang);
+      }
+      try { localStorage.setItem('site-lang', lang); } catch(e){}
+    }
+
+    var saved = 'th';
+    try { saved = localStorage.getItem('site-lang') || 'th'; } catch(e){}
+    if (saved !== 'th' && saved !== 'en') saved = 'th';
+
+    applyLang(saved);
+
+    var toggle = document.getElementById('langToggle');
+    if (toggle){
+      toggle.addEventListener('click', function(){
+        applyLang(document.documentElement.lang === 'th' ? 'en' : 'th');
+      });
+    }
+
+    lucide.createIcons();
+  })();
 </script>
 </body>
 </html>
