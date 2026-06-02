@@ -89,7 +89,16 @@
   .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
   .btn-ghost:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
   .nav-cta{display:inline-flex}
-  .burger{display:none;background:none;border:none;cursor:pointer;color:var(--ink)}
+  .burger{display:none;background:none;border:none;cursor:pointer;color:var(--ink);padding:6px;margin-right:-6px}
+  .burger i,.burger svg{width:26px;height:26px}
+
+  /* MOBILE MENU */
+  .mobile-menu{display:none;flex-direction:column;padding:8px 0 22px}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a.m-link{font-size:17px;font-weight:500;color:var(--ink-soft);padding:13px 0;border-bottom:1px solid var(--line);transition:color .2s}
+  .mobile-menu a.m-link:hover{color:var(--ink)}
+  .mobile-menu .btn{justify-content:center;margin-top:20px}
+  @media(min-width:681px){.mobile-menu{display:none !important}}
 
   /* LANG TOGGLE */
   .lang-toggle{
@@ -306,6 +315,9 @@
     .hero-badge{left:0;bottom:-20px}
     .foot-grid{grid-template-columns:1fr 1fr}
     .hero h1{font-size:clamp(46px,13vw,72px)}
+    .statement .wrap{padding:72px 20px}
+    .why .wrap{padding:72px 20px}
+    .cta .wrap{padding:84px 20px}
   }
 </style>
 </head>
@@ -328,7 +340,17 @@
         <span class="lang-opt" data-l="en">EN</span>
       </button>
       <a href="#contact" class="btn nav-cta"><span data-lang-th="จองวันงาน" data-lang-en="Book a date">จองวันงาน</span> <i data-lucide="arrow-up-right"></i></a>
-      <button class="burger" aria-label="Menu"><i data-lucide="menu"></i></button>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu"><i data-lucide="menu"></i></button>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="mobile-menu" id="mobileMenu">
+      <a class="m-link" href="#booths" data-lang-th="บูธ" data-lang-en="Booths">บูธ</a>
+      <a class="m-link" href="#process" data-lang-th="ขั้นตอน" data-lang-en="How it works">ขั้นตอน</a>
+      <a class="m-link" href="#gallery" data-lang-th="ผลงาน" data-lang-en="Gallery">ผลงาน</a>
+      <a class="m-link" href="#packages" data-lang-th="แพ็กเกจ" data-lang-en="Packages">แพ็กเกจ</a>
+      <a class="m-link" href="#contact" data-lang-th="ติดต่อ" data-lang-en="Contact">ติดต่อ</a>
+      <a href="#contact" class="btn"><span data-lang-th="จองวันงาน" data-lang-en="Book a date">จองวันงาน</span> <i data-lucide="arrow-up-right"></i></a>
     </div>
   </div>
 </nav>
@@ -733,6 +755,24 @@
       toggle.addEventListener('click', function(){
         applyLang(document.documentElement.lang === 'th' ? 'en' : 'th');
       });
+    }
+
+    var burger = document.getElementById('burger');
+    var mobileMenu = document.getElementById('mobileMenu');
+    if (burger && mobileMenu){
+      function setMenu(open){
+        mobileMenu.classList.toggle('open', open);
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.innerHTML = '<i data-lucide="' + (open ? 'x' : 'menu') + '"></i>';
+        lucide.createIcons();
+      }
+      burger.addEventListener('click', function(){
+        setMenu(!mobileMenu.classList.contains('open'));
+      });
+      var mLinks = mobileMenu.querySelectorAll('a');
+      for (var k = 0; k < mLinks.length; k++){
+        mLinks[k].addEventListener('click', function(){ setMenu(false); });
+      }
     }
 
     lucide.createIcons();
